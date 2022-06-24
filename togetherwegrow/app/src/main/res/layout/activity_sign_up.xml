@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUp">
+
+    <TextView
+        android:id="@+id/signuptext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:gravity="center"
+        android:layout_marginTop="100dp"
+        android:textSize="30sp"
+        android:textColor="@color/teal_700"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailfieldsignup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="250dp"
+        android:hint="email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailsignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_email" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/usernamefieldsignup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="350dp"
+        android:hint="username">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/usernamesignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_username" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordfieldsignup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="450dp"
+        android:hint="password">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordsignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:drawableEnd="@drawable/ic_password" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/buttonSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passwordfieldsignup"
+        android:layout_alignStart="@+id/passwordfieldsignup"
+        android:layout_alignEnd="@+id/passwordfieldsignup"
+        android:layout_marginStart="128.5dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="128.5dp"
+        android:gravity="center"
+        android:text="SIGN UP" />
+
+    <TextView
+        android:id="@+id/loginText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignStart="@+id/passwordfieldsignup"
+        android:layout_alignEnd="@+id/passwordfieldsignup"
+        android:layout_marginStart="78dp"
+        android:layout_marginTop="600dp"
+        android:layout_marginEnd="78dp"
+        android:text="Already have an account? Login" />
+
+</RelativeLayout>
