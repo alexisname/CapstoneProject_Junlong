@@ -72,11 +72,13 @@ public class LogIn extends AppCompatActivity {
                             if(putData.startPut()){
                                 if(putData.onComplete()){
                                     String result = putData.getResult();
-                                    if(result.equals("Login Success")){ //if sign up succeed, redirect to welcome home page
+                                    if(result.equals("Login Success")){ //if log in succeed, redirect to welcome home page
                                         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                        intent.putExtra(Intent.EXTRA_TEXT,username);//pass current logged username together to the main page
                                         startActivity(intent);
                                         finish();
+
                                     }
                                     else {//show error message to user
                                         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
