@@ -66,6 +66,31 @@ class DataBase
         } else return false;
     }
 
+    function input($table, $username, $worktype, $workload, $freshnessafterwork, $activityhour1, $activityhour2, $activityhour3, $childage, $mostpreferred, $secondpreferred, $thirdpreferred, $dislike)
+    {
+        
+        $username = $this->prepareData($username);
+        $worktype = $this->prepareData($worktype);
+        $workload = $this->prepareData($workload);        
+        $freshnessafterwork = $this->prepareData($freshnessafterwork);
+        $activityhour1 = $this->prepareData($activityhour1);
+        $activityhour2 = $this->prepareData($activityhour2);
+        $activityhour3 = $this->prepareData($activityhour3);
+        $childage = $this->prepareData($childage);
+        $mostpreferred = $this->prepareData($mostpreferred);
+        $secondpreferred = $this->prepareData($secondpreferred);
+        $thirdpreferred = $this->prepareData($thirdpreferred);
+        $dislike = $this->prepareData($dislike);
+        
+        $this->sql =
+            "INSERT INTO " . $table . " (username, worktype, workload, freshnessafterwork, activityhour1, activityhour2, activityhour3,
+            childage, mostpreferred, secondpreferred, thirdpreferred, dislike) VALUES ('" . $username . "','" . $worktype . "','" . $workload . "','" . $freshnessafterwork . "','" . $activityhour1 . "','" . $activityhour2 . "'
+            ,'" . $activityhour3 . "','" . $childage . "','" . $mostpreferred . "','" . $secondpreferred . "','" . $thirdpreferred . "','" . $dislike . "')";
+        if (mysqli_query($this->connect, $this->sql)) {
+            return true;
+        } else return false;
+    }
+
 }
 
 ?>

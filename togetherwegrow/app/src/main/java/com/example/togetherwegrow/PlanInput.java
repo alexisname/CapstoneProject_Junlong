@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
@@ -14,12 +16,28 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class PlanInput extends AppCompatActivity{
-    private String text;
+    /*fields to be sent to database*/
+    private String username;
+    private String worktype;
+    private String workload;
+    private String freshnessafterwork;
+    private String activityhour1;
+    private String activityhour2;
+    private String activityhour3;
+    private String childage;
+    private String mostpreferred;
+    private String secondpreferred;
+    private String thirdpreferred;
+    private String dislike;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan_input);
+        /*receive current username and pass it to field username*/
+        Intent intent = getIntent();
+        username = intent.getStringExtra(Intent.EXTRA_TEXT);
         /*initialize dropdown list and buttons*/
         Spinner spworktype = findViewById(R.id.spworktype);
         Spinner spworkload = findViewById(R.id.spworkload);
@@ -33,6 +51,7 @@ public class PlanInput extends AppCompatActivity{
         Spinner spthird = findViewById(R.id.spthird);
         Spinner spdis = findViewById(R.id.spdis);
         Button iptBTM = findViewById(R.id.inputBTM);
+        Button iptSMT = findViewById(R.id.inputSMT);
 
         /*assign content for work type dropdown list*/
         ArrayAdapter<CharSequence> worktypeAdapter = ArrayAdapter.createFromResource(this,R.array.worktype, R.layout.spinner_layout);
@@ -41,7 +60,7 @@ public class PlanInput extends AppCompatActivity{
         spworktype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                text = spworktype.getSelectedItem().toString();
+                worktype = spworktype.getSelectedItem().toString();
                 /*TODO
                 * send this to db*/
             }
@@ -58,7 +77,7 @@ public class PlanInput extends AppCompatActivity{
         spworkload.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                text = spworkload.getSelectedItem().toString();
+                workload = spworkload.getSelectedItem().toString();
                 /*TODO
                  * send this to db*/
             }
@@ -76,7 +95,7 @@ public class PlanInput extends AppCompatActivity{
         spfreshness.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                text = spfreshness.getSelectedItem().toString();
+                freshnessafterwork = spfreshness.getSelectedItem().toString();
                 /*TODO
                  * send this to db*/
             }
@@ -94,7 +113,7 @@ public class PlanInput extends AppCompatActivity{
         sphour1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                text = sphour1.getSelectedItem().toString();
+                activityhour1 = sphour1.getSelectedItem().toString();
                 /*TODO
                  * send this to db*/
             }
@@ -112,7 +131,7 @@ public class PlanInput extends AppCompatActivity{
         sphour2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                text = sphour2.getSelectedItem().toString();
+                activityhour2 = sphour2.getSelectedItem().toString();
                 /*TODO
                  * send this to db*/
             }
@@ -130,7 +149,7 @@ public class PlanInput extends AppCompatActivity{
         sphour3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                text = sphour3.getSelectedItem().toString();
+                activityhour3 = sphour3.getSelectedItem().toString();
                 /*TODO
                  * send this to db*/
             }
@@ -149,7 +168,7 @@ public class PlanInput extends AppCompatActivity{
         spage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                text = spage.getSelectedItem().toString();
+                childage = spage.getSelectedItem().toString();
                 /*TODO
                  * send this to db*/
             }
@@ -167,7 +186,7 @@ public class PlanInput extends AppCompatActivity{
         spmost.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                text = spmost.getSelectedItem().toString();
+                mostpreferred = spmost.getSelectedItem().toString();
                 /*TODO
                  * send this to db*/
             }
@@ -185,7 +204,7 @@ public class PlanInput extends AppCompatActivity{
         spsecond.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                text = spsecond.getSelectedItem().toString();
+                secondpreferred = spsecond.getSelectedItem().toString();
                 /*TODO
                  * send this to db*/
             }
@@ -203,7 +222,7 @@ public class PlanInput extends AppCompatActivity{
         spthird.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                text = spthird.getSelectedItem().toString();
+                thirdpreferred = spthird.getSelectedItem().toString();
                 /*TODO
                  * send this to db*/
             }
@@ -221,7 +240,7 @@ public class PlanInput extends AppCompatActivity{
         spdis.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                text = spdis.getSelectedItem().toString();
+                dislike = spdis.getSelectedItem().toString();
                 /*TODO
                  * send this to db*/
             }
@@ -229,6 +248,91 @@ public class PlanInput extends AppCompatActivity{
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+
+        /*
+        add onclick listener to submit input button
+        it checks if all fields are filled
+        and POST to database
+        if succeed, it shows submit succeeds
+        else shows error message
+         */
+        iptSMT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*
+                get the value/content of input
+                 */
+
+//                String username;
+//                String password;
+//                username = textInputUsername.getText().toString();
+//                password = textInputPassword.getText().toString();
+                /*check if all fields are filled*/
+                if(!username.equals("") && !worktype.equals("")&& !workload.equals("")&& !freshnessafterwork.equals("")
+                        && !activityhour1.equals("")&& !activityhour2.equals("")&& !activityhour3.equals("")
+                        && !childage.equals("")&& !mostpreferred.equals("")&& !secondpreferred.equals("")
+                        && !thirdpreferred.equals("")&& !dislike.equals("")){
+                    /*handler to open a thread to pass the message to database*/
+                    Handler handler = new Handler(Looper.getMainLooper());
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            /*put data input array and write to database*/
+                            String[] field = new String[12];
+                            field[0] = "username";
+                            field[1] = "worktype";
+                            field[2] = "workload";
+                            field[3] = "freshnessafterwork";
+                            field[4] = "activityhour1";
+                            field[5] = "activityhour2";
+                            field[6] = "activityhour3";
+                            field[7] = "childage";
+                            field[8] = "mostpreferred";
+                            field[9] = "secondpreferred";
+                            field[10] = "thirdpreferred";
+                            field[11] = "dislike";
+                            String[] data = new String[12];
+                            data[0] = username;
+                            data[1] = worktype;
+                            data[2] = workload;
+                            data[3] = freshnessafterwork;
+                            data[4] = activityhour1;
+                            data[5] = activityhour2;
+                            data[6] = activityhour3;
+                            data[7] = childage;
+                            data[8] = mostpreferred;
+                            data[9] = secondpreferred;
+                            data[10] = thirdpreferred;
+                            data[11] = dislike;
+                            /*use SendData helper for url connection and IO stream
+                             * check the returned result on completion of data sending
+                             */
+                            SendData sendData = new SendData("http://10.0.0.146/TogetherWeGrow/input.php","POST",field,data);
+                            if(sendData.startSend()){
+                                if(sendData.onComplete()){
+                                    String result = sendData.getResult();
+                                    if(result.equals("Your input has been saved")){ //if log in succeed, redirect to welcome home page
+                                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+//                                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+//                                        intent.putExtra(Intent.EXTRA_TEXT,username);//pass current logged username together to the main page
+//                                        startActivity(intent);
+//                                        finish();
+
+                                    }
+                                    else {//show error message to user
+                                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+                else {//if user leaves a field empty
+                    Toast.makeText(getApplicationContext(), "All fields are required", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

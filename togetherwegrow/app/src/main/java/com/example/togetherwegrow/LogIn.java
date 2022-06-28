@@ -67,11 +67,13 @@ public class LogIn extends AppCompatActivity {
                             String[] data = new String[2];
                             data[0] = username;
                             data[1] = password;
-                            /*use a utility for I/O stream*/
-                            PutData putData = new PutData("http://10.0.0.146/TogetherWeGrow/login.php","POST",field,data);
-                            if(putData.startPut()){
-                                if(putData.onComplete()){
-                                    String result = putData.getResult();
+                            /*use SendData helper for url connection and IO stream
+                             * check the returned result on completion of data sending
+                             */
+                            SendData sendData = new SendData("http://10.0.0.146/TogetherWeGrow/login.php","POST",field,data);
+                            if(sendData.startSend()){
+                                if(sendData.onComplete()){
+                                    String result = sendData.getResult();
                                     if(result.equals("Login Success")){ //if log in succeed, redirect to welcome home page
                                         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);

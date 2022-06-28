@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentToInput = new Intent(getApplicationContext(),PlanInput.class);
+                intentToInput.putExtra(Intent.EXTRA_TEXT,currUser); //pass current username to input page
                 startActivity(intentToInput);
                 finish();
             }
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentToTrack = new Intent(getApplicationContext(),StatusTrack.class);
+                intentToTrack.putExtra(Intent.EXTRA_TEXT,currUser); //pass current username to track page
                 startActivity(intentToTrack);
                 finish();
             }
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentToRec = new Intent(getApplicationContext(),Recommendation.class);
+                intentToRec.putExtra(Intent.EXTRA_TEXT,currUser); //pass current username to recommendation page
                 startActivity(intentToRec);
                 finish();
             }

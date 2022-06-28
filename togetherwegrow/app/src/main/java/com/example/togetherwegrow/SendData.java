@@ -10,17 +10,20 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-
-public class PutData extends Thread {
+/*
+this helper class provides the method to send data to database
+ */
+public class SendData extends Thread {
     private String url, method;
     String result_data = "Empty";
     String[] data, field;
 
-    public PutData(String url, String method, String[] field, String[] data) {
+    public SendData(String url, String method, String[] field, String[] data) {
         this.url = url;
         this.method = method;
         this.data = new String[data.length];
         this.field = new String[field.length];
+        /*assign input parameter field and data to variable field and data*/
         System.arraycopy(field, 0, this.field, 0, field.length);
         System.arraycopy(data, 0, this.data, 0, data.length);
     }
@@ -28,6 +31,7 @@ public class PutData extends Thread {
     @Override
     public void run() {
         try {
+            //establish connection with url
             String UTF8 = "UTF-8", iso = "iso-8859-1";
             URL url = new URL(this.url);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -35,6 +39,7 @@ public class PutData extends Thread {
             httpURLConnection.setDoOutput(true);
             httpURLConnection.setDoInput(true);
             OutputStream outputStream = httpURLConnection.getOutputStream();
+            //write data to IO stream
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, UTF8));
             StringBuilder post_data = new StringBuilder();
             for (int i = 0; i < this.field.length; i++) {
@@ -44,6 +49,7 @@ public class PutData extends Thread {
             bufferedWriter.flush();
             bufferedWriter.close();
             outputStream.close();
+            //read from IO stream
             InputStream inputStream = httpURLConnection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, iso));
             StringBuilder result = new StringBuilder();
@@ -60,8 +66,8 @@ public class PutData extends Thread {
         }
     }
 
-    public boolean startPut() {
-        PutData.this.start();
+    public boolean startSend() {
+        SendData.this.start();
         return true;
     }
 

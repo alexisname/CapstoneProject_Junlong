@@ -70,9 +70,11 @@ public class SignUp extends AppCompatActivity {
                             data[0] = email;
                             data[1] = username;
                             data[2] = password;
-                            /*use a utility for I/O stream*/
-                            PutData putData = new PutData("http://10.0.0.146/TogetherWeGrow/signup.php","POST",field,data);
-                            if(putData.startPut()){
+                            /*use SendData helper for url connection and IO stream
+                             * check the returned result on completion of data sending
+                             */
+                            SendData putData = new SendData("http://10.0.0.146/TogetherWeGrow/signup.php","POST",field,data);
+                            if(putData.startSend()){
                                 if(putData.onComplete()){
                                     String result = putData.getResult();
                                     if(result.equals("Sign Up Success")){ //if sign up succeed, redirect to sign in page
