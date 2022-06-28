@@ -141,6 +141,97 @@ public class PlanInput extends AppCompatActivity{
             }
         });
 
+
+        /*assign content for age dropdown list*/
+        ArrayAdapter<CharSequence> ageAdapter = ArrayAdapter.createFromResource(this,R.array.age, android.R.layout.simple_spinner_dropdown_item);
+        ageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spage.setAdapter(ageAdapter);
+        spage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                text = spage.getSelectedItem().toString();
+                /*TODO
+                 * send this to db*/
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        /*assign content for activity 1 dropdown list*/
+        ArrayAdapter<CharSequence> mostAdapter = ArrayAdapter.createFromResource(this,R.array.activities, android.R.layout.simple_spinner_dropdown_item);
+        mostAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spmost.setAdapter(mostAdapter);
+        spmost.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                text = spmost.getSelectedItem().toString();
+                /*TODO
+                 * send this to db*/
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        /*assign content for activity 2 dropdown list*/
+        ArrayAdapter<CharSequence> secondAdapter = ArrayAdapter.createFromResource(this,R.array.activities, android.R.layout.simple_spinner_dropdown_item);
+        secondAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spsecond.setAdapter(secondAdapter);
+        spsecond.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                text = spsecond.getSelectedItem().toString();
+                /*TODO
+                 * send this to db*/
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        /*assign content for activity 3 dropdown list*/
+        ArrayAdapter<CharSequence> thirdAdapter = ArrayAdapter.createFromResource(this,R.array.activities, android.R.layout.simple_spinner_dropdown_item);
+        thirdAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spthird.setAdapter(thirdAdapter);
+        spthird.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                text = spthird.getSelectedItem().toString();
+                /*TODO
+                 * send this to db*/
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        /*assign content for disklike dropdown list*/
+        ArrayAdapter<CharSequence> disAdapter = ArrayAdapter.createFromResource(this,R.array.activities, android.R.layout.simple_spinner_dropdown_item);
+        disAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spdis.setAdapter(disAdapter);
+        spdis.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                text = spdis.getSelectedItem().toString();
+                /*TODO
+                 * send this to db*/
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         /*onclick listener for back to main page*/
         iptBTM.setOnClickListener(new View.OnClickListener() {
             @Override

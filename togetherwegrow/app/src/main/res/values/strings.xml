@@ -37,6 +37,33 @@
         <item>20:00</item>
         <item>21:00</item>
         <item>22:00</item>
+        <item>N/A</item>
+    </string-array>
+
+    <string-array name="age">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="activities">
+        <item>reading</item>
+        <item>drawing</item>
+        <item>Art Craft</item>
+        <item>Music</item>
+        <item>Sports</item>
+        <item>Movie</item>
+        <item>Game</item>
+        <item>N/A</item>
     </string-array>
 
 </resources>

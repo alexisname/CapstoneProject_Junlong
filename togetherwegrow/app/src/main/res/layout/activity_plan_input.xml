@@ -162,26 +162,17 @@
         android:layout_marginLeft="40dp"
         android:text="Child Age"
         android:textColor="@color/black"
-        android:textSize="15dp" />
+        android:textSize="15sp" />
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fieldage"
-        android:layout_width="50dp"
+    <Spinner
+        android:id="@+id/spage"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/txtage"
         android:layout_alignStart="@+id/txtage"
-        android:layout_alignEnd="@+id/txtage"
-        android:layout_below="@id/txtage"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        >
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp" />
 
-        <Spinner
-            android:id="@+id/spage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/txtmost"
@@ -191,24 +182,17 @@
         android:layout_marginLeft="40dp"
         android:text="Most Preferred Activity"
         android:textColor="@color/black"
-        android:textSize="15dp" />
+        android:textSize="15sp" />
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fieldmost"
-        android:layout_width="match_parent"
+    <Spinner
+        android:id="@+id/spmost"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtmost"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="20dp"
-        >
+        android:layout_below="@+id/txtmost"
+        android:layout_alignStart="@+id/txtmost"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp" />
 
-        <Spinner
-            android:id="@+id/spmost"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/txtsecond"
@@ -218,24 +202,17 @@
         android:layout_marginLeft="40dp"
         android:text="Second Preferred Activity"
         android:textColor="@color/black"
-        android:textSize="15dp" />
+        android:textSize="15sp" />
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fieldsecond"
-        android:layout_width="match_parent"
+    <Spinner
+        android:id="@+id/spsecond"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtsecond"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="20dp"
-        >
+        android:layout_below="@+id/txtsecond"
+        android:layout_alignStart="@+id/txtsecond"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp" />
 
-        <Spinner
-            android:id="@+id/spsecond"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/txtthird"
@@ -245,24 +222,17 @@
         android:layout_marginLeft="40dp"
         android:text="Third Preferred Activity"
         android:textColor="@color/black"
-        android:textSize="15dp" />
+        android:textSize="15sp" />
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fieldthird"
-        android:layout_width="match_parent"
+    <Spinner
+        android:id="@+id/spthird"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtthird"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="20dp"
-        >
+        android:layout_below="@+id/txtthird"
+        android:layout_alignStart="@+id/txtthird"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp" />
 
-        <Spinner
-            android:id="@+id/spthird"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/txtdis"
@@ -272,24 +242,17 @@
         android:layout_marginTop="560dp"
         android:text="Disliked Activity"
         android:textColor="@color/black"
-        android:textSize="15dp" />
+        android:textSize="15sp" />
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fielddis"
-        android:layout_width="match_parent"
+    <Spinner
+        android:id="@+id/spdis"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtdis"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="20dp"
-        >
+        android:layout_below="@+id/txtdis"
+        android:layout_alignStart="@+id/txtdis"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp" />
 
-        <Spinner
-            android:id="@+id/spdis"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/inputBTM"
@@ -297,7 +260,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:text="Back to Homepage"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"/>
 
