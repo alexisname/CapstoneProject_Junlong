@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TogetherWeGrow</string>
+    <string-array name="worktype">
+        <item>Sedentary</item>
+        <item>Physical</item>
+        <item>Driving</item>
+    </string-array>
 </resources>

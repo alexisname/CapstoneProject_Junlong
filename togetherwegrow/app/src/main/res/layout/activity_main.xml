@@ -35,18 +35,24 @@
         android:id="@+id/btnplan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:text="start a plan"
         android:layout_marginTop="400dp"/>
     <Button
         android:id="@+id/btntrackplan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:text="track onging plan"
         android:layout_marginTop="500dp"/>
     <Button
         android:id="@+id/btnrec"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:text="see what might suit you"
         android:layout_marginTop="600dp"/>
 

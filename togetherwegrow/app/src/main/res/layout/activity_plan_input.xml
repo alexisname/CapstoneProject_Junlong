@@ -7,9 +7,325 @@
     tools:context=".PlanInput">
 
     <TextView
+        android:id="@+id/txtInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Your Info"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textSize="30dp"
+        android:textColor="@color/teal_700"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtworktype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Work Type"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="15dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spworktype"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="this is where you type in your info to get a plan"/>
+        android:layout_marginTop="10dp" />
+
+
+    <TextView
+        android:id="@+id/txtworkload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_toRightOf="@id/txtworktype"
+        android:layout_marginLeft="30dp"
+        android:text="Work Load"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fieldworkload"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/txtworkload"
+        android:layout_alignEnd="@+id/txtworkload"
+        android:layout_below="@id/txtworkload"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        >
+
+        <Spinner
+            android:id="@+id/spworkload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/txtfreshness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_toRightOf="@id/txtworkload"
+        android:layout_marginLeft="30dp"
+        android:text="Freshness After Work"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fieldfreshness"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/txtfreshness"
+        android:layout_alignEnd="@+id/txtfreshness"
+        android:layout_below="@id/txtfreshness"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        >
+
+        <Spinner
+            android:id="@+id/spfreshness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/txthour1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:layout_marginLeft="30dp"
+        android:text="Activity Hour 1"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fieldhour1"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/txthour1"
+        android:layout_alignEnd="@+id/txthour1"
+        android:layout_below="@id/txthour1"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        >
+
+        <Spinner
+            android:id="@+id/sphour1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/txthour2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:layout_toRightOf="@id/txthour1"
+        android:layout_marginLeft="30dp"
+        android:text="Activity Hour 2"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fieldhour2"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/txthour2"
+        android:layout_alignEnd="@+id/txthour2"
+        android:layout_below="@id/txthour2"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        >
+
+        <Spinner
+            android:id="@+id/sphour2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/txthour3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:layout_toRightOf="@id/txthour2"
+        android:layout_marginLeft="30dp"
+        android:text="Activity Hour 3"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fieldhour3"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/txthour3"
+        android:layout_alignEnd="@+id/txthour3"
+        android:layout_below="@id/txthour3"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        >
+
+        <Spinner
+            android:id="@+id/sphour3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/txtage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="320dp"
+        android:layout_marginLeft="40dp"
+        android:text="Child Age"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fieldage"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/txtage"
+        android:layout_alignEnd="@+id/txtage"
+        android:layout_below="@id/txtage"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        >
+
+        <Spinner
+            android:id="@+id/spage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/txtmost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="380dp"
+        android:layout_marginLeft="40dp"
+        android:text="Most Preferred Activity"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fieldmost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtmost"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="20dp"
+        >
+
+        <Spinner
+            android:id="@+id/spmost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/txtsecond"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="440dp"
+        android:layout_marginLeft="40dp"
+        android:text="Second Preferred Activity"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fieldsecond"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtsecond"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="20dp"
+        >
+
+        <Spinner
+            android:id="@+id/spsecond"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/txtthird"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
+        android:layout_marginLeft="40dp"
+        android:text="Third Preferred Activity"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fieldthird"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtthird"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="20dp"
+        >
+
+        <Spinner
+            android:id="@+id/spthird"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/txtdis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="560dp"
+        android:text="Disliked Activity"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fielddis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtdis"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="20dp"
+        >
+
+        <Spinner
+            android:id="@+id/spdis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/inputBTM"
@@ -17,7 +333,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:text="Back to Homepage"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"/>
 
 
 </RelativeLayout>
