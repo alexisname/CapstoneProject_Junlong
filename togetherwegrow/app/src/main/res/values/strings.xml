@@ -4,7 +4,6 @@
     <string-array name="worktype">
         <item>Sedentary</item>
         <item>Physical</item>
-        <item>Driving</item>
     </string-array>
 
     <string-array name="workload">
@@ -15,7 +14,7 @@
 
     <string-array name="fresh">
         <item>Fresh</item>
-        <item>Not bad</item>
+        <item>Medium</item>
         <item>Tired</item>
     </string-array>
 
@@ -40,7 +39,7 @@
         <item>N/A</item>
     </string-array>
 
-    <string-array name="age">
+    <integer-array name="age">
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -53,16 +52,15 @@
         <item>10</item>
         <item>11</item>
         <item>12</item>
-    </string-array>
+    </integer-array>
 
     <string-array name="activities">
         <item>reading</item>
         <item>drawing</item>
-        <item>Art Craft</item>
         <item>Music</item>
         <item>Sports</item>
-        <item>Movie</item>
         <item>Game</item>
+        <item>Cartoon</item>
         <item>N/A</item>
     </string-array>
 

@@ -24,7 +24,7 @@ public class PlanInput extends AppCompatActivity{
     private String activityhour1;
     private String activityhour2;
     private String activityhour3;
-    private String childage;
+    private int childage;
     private String mostpreferred;
     private String secondpreferred;
     private String thirdpreferred;
@@ -61,8 +61,6 @@ public class PlanInput extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 worktype = spworktype.getSelectedItem().toString();
-                /*TODO
-                * send this to db*/
             }
 
             @Override
@@ -78,8 +76,6 @@ public class PlanInput extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 workload = spworkload.getSelectedItem().toString();
-                /*TODO
-                 * send this to db*/
             }
 
             @Override
@@ -96,8 +92,6 @@ public class PlanInput extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 freshnessafterwork = spfreshness.getSelectedItem().toString();
-                /*TODO
-                 * send this to db*/
             }
 
             @Override
@@ -114,8 +108,6 @@ public class PlanInput extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 activityhour1 = sphour1.getSelectedItem().toString();
-                /*TODO
-                 * send this to db*/
             }
 
             @Override
@@ -132,8 +124,6 @@ public class PlanInput extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 activityhour2 = sphour2.getSelectedItem().toString();
-                /*TODO
-                 * send this to db*/
             }
 
             @Override
@@ -150,8 +140,6 @@ public class PlanInput extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 activityhour3 = sphour3.getSelectedItem().toString();
-                /*TODO
-                 * send this to db*/
             }
 
             @Override
@@ -168,9 +156,7 @@ public class PlanInput extends AppCompatActivity{
         spage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                childage = spage.getSelectedItem().toString();
-                /*TODO
-                 * send this to db*/
+                childage = (int) spage.getSelectedItem();
             }
 
             @Override
@@ -187,8 +173,6 @@ public class PlanInput extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 mostpreferred = spmost.getSelectedItem().toString();
-                /*TODO
-                 * send this to db*/
             }
 
             @Override
@@ -205,8 +189,6 @@ public class PlanInput extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 secondpreferred = spsecond.getSelectedItem().toString();
-                /*TODO
-                 * send this to db*/
             }
 
             @Override
@@ -223,8 +205,6 @@ public class PlanInput extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 thirdpreferred = spthird.getSelectedItem().toString();
-                /*TODO
-                 * send this to db*/
             }
 
             @Override
@@ -241,8 +221,6 @@ public class PlanInput extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 dislike = spdis.getSelectedItem().toString();
-                /*TODO
-                 * send this to db*/
             }
 
             @Override
@@ -251,90 +229,82 @@ public class PlanInput extends AppCompatActivity{
             }
         });
 
+        /*calculate points according to input*/
+        InputMatch inputMatch = new InputMatch(worktype,workload,freshnessafterwork,mostpreferred,secondpreferred,thirdpreferred,childage);
+        inputMatch.calPoints();
 
-        /*
-        add onclick listener to submit input button
-        it checks if all fields are filled
-        and POST to database
-        if succeed, it shows submit succeeds
-        else shows error message
-         */
-        iptSMT.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*
-                get the value/content of input
-                 */
 
-//                String username;
-//                String password;
-//                username = textInputUsername.getText().toString();
-//                password = textInputPassword.getText().toString();
-                /*check if all fields are filled*/
-                if(!username.equals("") && !worktype.equals("")&& !workload.equals("")&& !freshnessafterwork.equals("")
-                        && !activityhour1.equals("")&& !activityhour2.equals("")&& !activityhour3.equals("")
-                        && !childage.equals("")&& !mostpreferred.equals("")&& !secondpreferred.equals("")
-                        && !thirdpreferred.equals("")&& !dislike.equals("")){
-                    /*handler to open a thread to pass the message to database*/
-                    Handler handler = new Handler(Looper.getMainLooper());
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            /*put data input array and write to database*/
-                            String[] field = new String[12];
-                            field[0] = "username";
-                            field[1] = "worktype";
-                            field[2] = "workload";
-                            field[3] = "freshnessafterwork";
-                            field[4] = "activityhour1";
-                            field[5] = "activityhour2";
-                            field[6] = "activityhour3";
-                            field[7] = "childage";
-                            field[8] = "mostpreferred";
-                            field[9] = "secondpreferred";
-                            field[10] = "thirdpreferred";
-                            field[11] = "dislike";
-                            String[] data = new String[12];
-                            data[0] = username;
-                            data[1] = worktype;
-                            data[2] = workload;
-                            data[3] = freshnessafterwork;
-                            data[4] = activityhour1;
-                            data[5] = activityhour2;
-                            data[6] = activityhour3;
-                            data[7] = childage;
-                            data[8] = mostpreferred;
-                            data[9] = secondpreferred;
-                            data[10] = thirdpreferred;
-                            data[11] = dislike;
-                            /*use SendData helper for url connection and IO stream
-                             * check the returned result on completion of data sending
-                             */
-                            SendData sendData = new SendData("http://10.0.0.146/TogetherWeGrow/input.php","POST",field,data);
-                            if(sendData.startSend()){
-                                if(sendData.onComplete()){
-                                    String result = sendData.getResult();
-                                    if(result.equals("Your input has been saved")){ //if log in succeed, redirect to welcome home page
-                                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-//                                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-//                                        intent.putExtra(Intent.EXTRA_TEXT,username);//pass current logged username together to the main page
-//                                        startActivity(intent);
-//                                        finish();
 
-                                    }
-                                    else {//show error message to user
-                                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            }
-                        }
-                    });
-                }
-                else {//if user leaves a field empty
-                    Toast.makeText(getApplicationContext(), "All fields are required", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+//        /*
+//        add onclick listener to submit input button
+//        it checks if all fields are filled
+//        and POST to database
+//        if succeed, it shows submit succeeds
+//        else shows error message
+//         */
+//        iptSMT.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                /*check if all fields are filled*/
+//                if(!username.equals("") && !worktype.equals("")&& !workload.equals("")&& !freshnessafterwork.equals("")
+//                        && !activityhour1.equals("")&& !activityhour2.equals("")&& !activityhour3.equals("")
+//                        && !childage.equals("")&& !mostpreferred.equals("")&& !secondpreferred.equals("")
+//                        && !thirdpreferred.equals("")&& !dislike.equals("")){
+//                    /*handler to open a thread to pass the message to database*/
+//                    Handler handler = new Handler(Looper.getMainLooper());
+//                    handler.post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            /*put data input array and write to database*/
+//                            String[] field = new String[12];
+//                            field[0] = "username";
+//                            field[1] = "worktype";
+//                            field[2] = "workload";
+//                            field[3] = "freshnessafterwork";
+//                            field[4] = "activityhour1";
+//                            field[5] = "activityhour2";
+//                            field[6] = "activityhour3";
+//                            field[7] = "childage";
+//                            field[8] = "mostpreferred";
+//                            field[9] = "secondpreferred";
+//                            field[10] = "thirdpreferred";
+//                            field[11] = "dislike";
+//                            String[] data = new String[12];
+//                            data[0] = username;
+//                            data[1] = worktype;
+//                            data[2] = workload;
+//                            data[3] = freshnessafterwork;
+//                            data[4] = activityhour1;
+//                            data[5] = activityhour2;
+//                            data[6] = activityhour3;
+//                            data[7] = childage;
+//                            data[8] = mostpreferred;
+//                            data[9] = secondpreferred;
+//                            data[10] = thirdpreferred;
+//                            data[11] = dislike;
+//                            /*use SendData helper for url connection and IO stream
+//                             * check the returned result on completion of data sending
+//                             */
+//                            SendData sendData = new SendData("http://10.0.0.146/TogetherWeGrow/input.php","POST",field,data);
+//                            if(sendData.startSend()){
+//                                if(sendData.onComplete()){
+//                                    String result = sendData.getResult();
+//                                    if(result.equals("Your input has been saved")){ //if log in succeed, redirect to welcome home page
+//                                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+//                                    }
+//                                    else {//show error message to user
+//                                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    });
+//                }
+//                else {//if user leaves a field empty
+//                    Toast.makeText(getApplicationContext(), "All fields are required", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
 
         /*onclick listener for back to main page*/
         iptBTM.setOnClickListener(new View.OnClickListener() {
