@@ -65,7 +65,7 @@ public class ActivityResult extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         //Toast.makeText(ActivityResult.this, "responded", Toast.LENGTH_SHORT).show();
-                        //Log.e("", response);
+                        Log.e("", response);
                         parseJson(response);//use parseJson method to retrieve data from json
                     }
                 }, new Response.ErrorListener() {
@@ -82,11 +82,10 @@ public class ActivityResult extends AppCompatActivity {
     public void parseJson(String response){
         try {
             JSONArray jsonArray = new JSONArray(response);
-            //Log.e("abc:",""+jsonArray.length());
             for(int i=0; i<jsonArray.length(); i++){//for each item in that jsonArray, get desired data
                 String activityVar;
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                //Log.e("activity: ",jsonObject1.getString("activity"));
+                Log.e("activity: ",jsonObject.getString("activity"));
                 activityVar = jsonObject.getString("activity");
                 textView.append("activity: "+activityVar+"\n");
             }

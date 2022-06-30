@@ -115,28 +115,28 @@ public class InputMatch {
             freshnessC = 0.6*3.0;
         }
         if(secondPreferred.equals("reading")||secondPreferred.equals("drawing")||secondPreferred.equals("Cartoon")){
-            energyC += 0.6*2.0;
-            freshnessC += 0.6*4.0;
+            energyC += 0.3*2.0;
+            freshnessC += 0.3*4.0;
         }
         else if(secondPreferred.equals("Sports")){
-            energyC += 0.6*4.0;
-            freshnessC += 0.6*2.0;
+            energyC += 0.3*4.0;
+            freshnessC += 0.3*2.0;
         }
         else if(secondPreferred.equals("Game")){
-            energyC += 0.6*3.0;
-            freshnessC += 0.6*3.0;
+            energyC += 0.3*3.0;
+            freshnessC += 0.3*3.0;
         }
         if(thirdPreferred.equals("reading")||thirdPreferred.equals("drawing")||thirdPreferred.equals("Cartoon")){
-            energyC += 0.6*2.0;
-            freshnessC += 0.6*4.0;
+            energyC += 0.1*2.0;
+            freshnessC += 0.1*4.0;
         }
         else if(thirdPreferred.equals("Sports")){
-            energyC += 0.6*4.0;
-            freshnessC += 0.6*2.0;
+            energyC += 0.1*4.0;
+            freshnessC += 0.1*2.0;
         }
         else if(thirdPreferred.equals("Game")){
-            energyC += 0.6*3.0;
-            freshnessC += 0.6*3.0;
+            energyC += 0.1*3.0;
+            freshnessC += 0.1*3.0;
         }
         /*calculate total*/
         energy = 0.4*energyP + 0.6*energyC;
