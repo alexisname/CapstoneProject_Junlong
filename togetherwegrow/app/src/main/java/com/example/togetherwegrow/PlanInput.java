@@ -24,7 +24,7 @@ public class PlanInput extends AppCompatActivity{
     private String activityhour1;
     private String activityhour2;
     private String activityhour3;
-    private int childage;
+    private String childage;
     private String mostpreferred;
     private String secondpreferred;
     private String thirdpreferred;
@@ -156,7 +156,7 @@ public class PlanInput extends AppCompatActivity{
         spage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                childage = (int) spage.getSelectedItem();
+                childage = spage.getSelectedItem().toString();
             }
 
             @Override
@@ -230,10 +230,35 @@ public class PlanInput extends AppCompatActivity{
         });
 
         /*calculate points according to input*/
-        InputMatch inputMatch = new InputMatch(worktype,workload,freshnessafterwork,mostpreferred,secondpreferred,thirdpreferred,childage);
-        inputMatch.calPoints();
 
 
+        /*
+        add onclick listener to submit input button
+        when clicked, call calPoints() method to calculate input
+        then redirect to result page, fetch data according to input and display result
+         */
+        iptSMT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //if all fields are filled, calculate
+                if(!username.equals("") && !worktype.equals("")&& !workload.equals("")&& !freshnessafterwork.equals("")
+                        && !activityhour1.equals("")&& !activityhour2.equals("")&& !activityhour3.equals("")
+                        && !childage.equals("")&& !mostpreferred.equals("")&& !secondpreferred.equals("")
+                        && !thirdpreferred.equals("")&& !dislike.equals("")){
+                    InputMatch inputMatch = new InputMatch(worktype,workload,freshnessafterwork,mostpreferred,secondpreferred,thirdpreferred,childage);
+                    inputMatch.calPoints();//pass input to inputmatch then calculate
+                    //redirect to result page, with calculated points
+                    Intent intentSMT = new Intent(getApplicationContext(),ActivityResult.class);
+                    intentSMT.putExtra("energy",inputMatch.getEnergy());
+                    intentSMT.putExtra("fresh",inputMatch.getFreshness());
+                    startActivity(intentSMT);
+                    finish();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "All fields are required", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 //        /*
 //        add onclick listener to submit input button

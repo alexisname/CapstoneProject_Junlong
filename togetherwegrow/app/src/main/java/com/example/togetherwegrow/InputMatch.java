@@ -51,7 +51,7 @@ public class InputMatch {
     private String secondPreferred;
     private String thirdPreferred;
     /*fields for other factors*/
-    private int age;
+    private String age;
     /*TODO how to calculate time*/
 
     private double energyP;    //factors for parent
@@ -61,7 +61,7 @@ public class InputMatch {
     private double energy;    //overall factor
     private double freshness;
 
-    public InputMatch(String worktype, String workload, String freshnessafter, String mostPreferred, String secondPreferred, String thirdPreferred, int age) {
+    public InputMatch(String worktype, String workload, String freshnessafter, String mostPreferred, String secondPreferred, String thirdPreferred, String age) {
         this.worktype = worktype;
         this.workload = workload;
         this.freshnessafter = freshnessafter;

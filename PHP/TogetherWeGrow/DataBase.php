@@ -51,6 +51,27 @@ class DataBase
 
         return $login;
     }
+/*this function convert input string to double so that can be used to compare in table
+* and convert the result to json format
+*/ 
+    function findActivity($table, $energy, $fresh){
+        $ansactivit = array();
+        $energy = $this->prepareData($energy);
+        $fresh = $this->prepareData($fresh);
+        $energy = doubleval($energy);
+        $fresh = doubleval($fresh);
+        $this->sql = "select activity from " . $table . " where energyReq <= '" . $energy . "' and freshReq <= '" . $fresh . "'";
+        $result = mysqli_query($this->connect, $this->sql);
+        if($result){
+            header("Content-Type: JSON");
+            $i = 0;
+            while($row = mysqli_fetch_assoc($result)){
+                $ansactivit[$i]['activity'] = $row['activity'];
+                $i++;
+            }
+            echo json_encode($ansactivit);
+        }   
+    }
 
     function signUp($table, $email, $username, $password)
     {
