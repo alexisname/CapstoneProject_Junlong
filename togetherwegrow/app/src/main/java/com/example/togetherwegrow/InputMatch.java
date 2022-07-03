@@ -41,6 +41,8 @@ so this may give a game oriented plan, however, at least one activity will be in
  */
 
 
+import java.util.HashMap;
+
 public class InputMatch {
 
     /*fields for activity calculation*/
@@ -60,6 +62,7 @@ public class InputMatch {
     private double freshnessC;
     private double energy;    //overall factor
     private double freshness;
+    private HashMap<String, Double[]> activityMap = new HashMap<>();
 
     public InputMatch(String worktype, String workload, String freshnessafter, String mostPreferred, String secondPreferred, String thirdPreferred, String age) {
         this.worktype = worktype;
@@ -73,6 +76,14 @@ public class InputMatch {
 
     public void calPoints(){
         /*calculate points regarding parent's info*/
+        //initialize activityMap
+        activityMap.put("Reading",new Double[]{2.0, 4.0});
+        activityMap.put("Drawing",new Double[]{2.0, 4.0});
+        activityMap.put("Music",new Double[]{2.0, 4.0});
+        activityMap.put("Sports",new Double[]{4.0, 2.0});
+        activityMap.put("Game",new Double[]{3.0, 3.0});
+        activityMap.put("Cartoon",new Double[]{2.0, 4.0});
+        //activityMap.put("N/A",new Double[]{0.0, 0.0});
         /*worktype*/
         if(worktype.equals("Sedentary")){
             energyP = 4.0;
@@ -102,42 +113,56 @@ public class InputMatch {
         }
         /*calculate points regarding child's preference*/
         /*TODO consider the second or third pref might be N/A, change weight*/
-        if(mostPreferred.equals("reading")||mostPreferred.equals("drawing")||mostPreferred.equals("Cartoon")){
-            energyC = 0.6*2.0;
-            freshnessC = 0.6*4.0;
+        /*if all three preferences are filled*/
+        if(!mostPreferred.equals("N/A") && !secondPreferred.equals("N/A") && !thirdPreferred.equals("N/A")){
+            energyC = 0.6*activityMap.get(mostPreferred)[0]+0.3*activityMap.get(secondPreferred)[0]+0.1*activityMap.get(thirdPreferred)[0];
+            freshnessC = 0.6*activityMap.get(mostPreferred)[1]+0.3*activityMap.get(secondPreferred)[1]+0.1*activityMap.get(thirdPreferred)[1];
         }
-        else if(mostPreferred.equals("Sports")){
-            energyC = 0.6*4.0;
-            freshnessC = 0.6*2.0;
+        if(!mostPreferred.equals("N/A") && !secondPreferred.equals("N/A") && thirdPreferred.equals("N/A")){
+            energyC = 0.6*activityMap.get(mostPreferred)[0]+0.4*activityMap.get(secondPreferred)[0];
+            freshnessC = 0.6*activityMap.get(mostPreferred)[1]+0.4*activityMap.get(secondPreferred)[1];
         }
-        else if(mostPreferred.equals("Game")){
-            energyC = 0.6*3.0;
-            freshnessC = 0.6*3.0;
+        if(!mostPreferred.equals("N/A") && secondPreferred.equals("N/A") && thirdPreferred.equals("N/A")){
+            energyC = activityMap.get(mostPreferred)[0];
+            freshnessC = activityMap.get(mostPreferred)[1];
         }
-        if(secondPreferred.equals("reading")||secondPreferred.equals("drawing")||secondPreferred.equals("Cartoon")){
-            energyC += 0.3*2.0;
-            freshnessC += 0.3*4.0;
-        }
-        else if(secondPreferred.equals("Sports")){
-            energyC += 0.3*4.0;
-            freshnessC += 0.3*2.0;
-        }
-        else if(secondPreferred.equals("Game")){
-            energyC += 0.3*3.0;
-            freshnessC += 0.3*3.0;
-        }
-        if(thirdPreferred.equals("reading")||thirdPreferred.equals("drawing")||thirdPreferred.equals("Cartoon")){
-            energyC += 0.1*2.0;
-            freshnessC += 0.1*4.0;
-        }
-        else if(thirdPreferred.equals("Sports")){
-            energyC += 0.1*4.0;
-            freshnessC += 0.1*2.0;
-        }
-        else if(thirdPreferred.equals("Game")){
-            energyC += 0.1*3.0;
-            freshnessC += 0.1*3.0;
-        }
+
+//        if(mostPreferred.equals("reading")||mostPreferred.equals("drawing")||mostPreferred.equals("Cartoon")){
+//            energyC = 0.6*2.0;
+//            freshnessC = 0.6*4.0;
+//        }
+//        else if(mostPreferred.equals("Sports")){
+//            energyC = 0.6*4.0;
+//            freshnessC = 0.6*2.0;
+//        }
+//        else if(mostPreferred.equals("Game")){
+//            energyC = 0.6*3.0;
+//            freshnessC = 0.6*3.0;
+//        }
+//        if(secondPreferred.equals("reading")||secondPreferred.equals("drawing")||secondPreferred.equals("Cartoon")){
+//            energyC += 0.3*2.0;
+//            freshnessC += 0.3*4.0;
+//        }
+//        else if(secondPreferred.equals("Sports")){
+//            energyC += 0.3*4.0;
+//            freshnessC += 0.3*2.0;
+//        }
+//        else if(secondPreferred.equals("Game")){
+//            energyC += 0.3*3.0;
+//            freshnessC += 0.3*3.0;
+//        }
+//        if(thirdPreferred.equals("reading")||thirdPreferred.equals("drawing")||thirdPreferred.equals("Cartoon")){
+//            energyC += 0.1*2.0;
+//            freshnessC += 0.1*4.0;
+//        }
+//        else if(thirdPreferred.equals("Sports")){
+//            energyC += 0.1*4.0;
+//            freshnessC += 0.1*2.0;
+//        }
+//        else if(thirdPreferred.equals("Game")){
+//            energyC += 0.1*3.0;
+//            freshnessC += 0.1*3.0;
+//        }
         /*calculate total*/
         energy = 0.4*energyP + 0.6*energyC;
         freshness = 0.4*freshnessP + 0.6*freshnessC;

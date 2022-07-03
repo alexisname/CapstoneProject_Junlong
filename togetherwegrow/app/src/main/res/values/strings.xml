@@ -55,8 +55,8 @@
     </string-array>
 
     <string-array name="activities">
-        <item>reading</item>
-        <item>drawing</item>
+        <item>Reading</item>
+        <item>Drawing</item>
         <item>Music</item>
         <item>Sports</item>
         <item>Game</item>

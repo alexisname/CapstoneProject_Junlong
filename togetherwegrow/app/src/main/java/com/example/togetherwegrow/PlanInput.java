@@ -241,16 +241,22 @@ public class PlanInput extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 //if all fields are filled, calculate
-                if(!username.equals("") && !worktype.equals("")&& !workload.equals("")&& !freshnessafterwork.equals("")
+                if(activityhour1.equals("N/A")&& activityhour2.equals("N/A")&& activityhour3.equals("N/A")){
+                    Toast.makeText(getApplicationContext(), "Choose at least one time slot", Toast.LENGTH_SHORT).show();
+                }
+                else if(mostpreferred.equals("N/A")&& secondpreferred.equals("N/A") && thirdpreferred.equals("N/A")){
+                    Toast.makeText(getApplicationContext(), "Choose at least one preference", Toast.LENGTH_SHORT).show();
+                }
+                else if(!username.equals("") && !worktype.equals("")&& !workload.equals("")&& !freshnessafterwork.equals("")
                         && !activityhour1.equals("")&& !activityhour2.equals("")&& !activityhour3.equals("")
                         && !childage.equals("")&& !mostpreferred.equals("")&& !secondpreferred.equals("")
-                        && !thirdpreferred.equals("")&& !dislike.equals("")){
-                    InputMatch inputMatch = new InputMatch(worktype,workload,freshnessafterwork,mostpreferred,secondpreferred,thirdpreferred,childage);
+                        && !thirdpreferred.equals("")&& !dislike.equals("")) {
+                    InputMatch inputMatch = new InputMatch(worktype, workload, freshnessafterwork, mostpreferred, secondpreferred, thirdpreferred, childage);
                     inputMatch.calPoints();//pass input to inputmatch then calculate
                     //redirect to result page, with calculated points
-                    Intent intentSMT = new Intent(getApplicationContext(),ActivityResult.class);
-                    intentSMT.putExtra("energy",inputMatch.getEnergy());
-                    intentSMT.putExtra("fresh",inputMatch.getFreshness());
+                    Intent intentSMT = new Intent(getApplicationContext(), ActivityResult.class);
+                    intentSMT.putExtra("energy", inputMatch.getEnergy());
+                    intentSMT.putExtra("fresh", inputMatch.getFreshness());
                     startActivity(intentSMT);
                     finish();
                 }
