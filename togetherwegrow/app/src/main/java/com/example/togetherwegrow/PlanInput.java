@@ -257,6 +257,7 @@ public class PlanInput extends AppCompatActivity{
                     Intent intentSMT = new Intent(getApplicationContext(), ActivityResult.class);
                     intentSMT.putExtra("energy", inputMatch.getEnergy());
                     intentSMT.putExtra("fresh", inputMatch.getFreshness());
+                    intentSMT.putExtra("age", Integer.valueOf(childage));
                     startActivity(intentSMT);
                     finish();
                 }

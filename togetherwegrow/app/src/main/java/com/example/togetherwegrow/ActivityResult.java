@@ -39,26 +39,30 @@ public class ActivityResult extends AppCompatActivity {
         Intent intent = getIntent(); //get calculated result from
         double energy = intent.getDoubleExtra("energy",0);
         double fresh = intent.getDoubleExtra("fresh",0);
+        int childage = intent.getIntExtra("age",0);
+        //InputMatch[] thing = intent.get
 
         textView = findViewById(R.id.result);
         /*TODO add fields for more organized result display*/
         btnRes = findViewById(R.id.btnRes);
+        retrieveData(energy,fresh,childage);
 
         //set on click listener for get result button
-        btnRes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                retrieveData(energy,fresh);
-            }
-        });
+//        btnRes.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                retrieveData(energy,fresh);
+//            }
+//        });
     }
 
-    public void retrieveData(double energy, double fresh){
+    public void retrieveData(double energy, double fresh, int childage){
         RequestQueue queue = Volley.newRequestQueue(this);
         //convert double to string to pass to url for GET method
-        String en = String.valueOf(energy);
-        String fr = String.valueOf(fresh);
-        String url = "http://10.0.0.146/TogetherWeGrow/findActivity.php?energy="+en+ "&fresh=" + fr;
+        String energyRetrieve = String.valueOf(energy);
+        String freshRetrieve = String.valueOf(fresh);
+        String ageRetrieve = String.valueOf(childage);
+        String url = "http://10.0.0.146/TogetherWeGrow/findActivity.php?energy="+energyRetrieve+ "&fresh=" + freshRetrieve+ "&age=" + ageRetrieve;
         //GET request
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -84,10 +88,16 @@ public class ActivityResult extends AppCompatActivity {
             JSONArray jsonArray = new JSONArray(response);
             for(int i=0; i<jsonArray.length(); i++){//for each item in that jsonArray, get desired data
                 String activityVar;
+                double energyVar;
+                double freshVar;
+                int ageVar;
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 Log.e("activity: ",jsonObject.getString("activity"));
                 activityVar = jsonObject.getString("activity");
-                textView.append("activity: "+activityVar+"\n");
+                energyVar = jsonObject.getDouble("energy");
+                freshVar = jsonObject.getDouble("fresh");
+//                ageVar = jsonObject.getInt("age");
+                textView.append("activity: "+activityVar+"energy need: "+energyVar+"fresh need: "+freshVar+"age: "+"\n");
             }
         } catch (JSONException e) {
             e.printStackTrace();
