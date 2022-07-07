@@ -60,6 +60,9 @@ public class ActivityResult extends AppCompatActivity {
         listResult = (ListView) findViewById(R.id.listResult);
         clickForRes = findViewById(R.id.clickRes);
         displayActivity = new ArrayList<>();
+        displayActivity.add(" ");
+        displayActivity.add(" ");
+        displayActivity.add(" ");
 
 
         /*retrieve result from db and store them to string*/
@@ -74,25 +77,40 @@ public class ActivityResult extends AppCompatActivity {
             int rdm1 = (int)((Math.random()*numOfRetrieved));
             int rdm2 = (int)((Math.random()*numOfRetrieved));
             int rdm3 = (int)((Math.random()*numOfRetrieved));
-            displayActivity.add(retrievedActivity[rdm1]+" Time is: "+String.valueOf(hour1)+" : "+String.valueOf(minute1));
-            displayActivity.add(retrievedActivity[rdm2]+" Time is: "+String.valueOf(hour2)+" : "+String.valueOf(minute2));
-            displayActivity.add(retrievedActivity[rdm3]+" Time is: "+String.valueOf(hour3)+" : "+String.valueOf(minute3));
+            String minuteOne = minute1<10?"0"+String.valueOf(minute1):String.valueOf(minute1);
+            String minuteTwo = minute2<10?"0"+String.valueOf(minute2):String.valueOf(minute2);
+            String minuteThree = minute3<10?"0"+String.valueOf(minute3):String.valueOf(minute3);
+//            displayActivity.add(retrievedActivity[rdm1]+" At: "+String.valueOf(hour1)+" : "+minuteOne);
+            displayActivity.set(0,retrievedActivity[rdm1]+" At: "+String.valueOf(hour1)+" : "+minuteOne);
+            displayActivity.set(1,retrievedActivity[rdm2]+" At: "+String.valueOf(hour2)+" : "+minuteTwo);
+            displayActivity.set(2,retrievedActivity[rdm3]+" At: "+String.valueOf(hour3)+" : "+minuteThree);
+//            displayActivity.add(retrievedActivity[rdm2]+" At: "+String.valueOf(hour2)+" : "+minuteTwo);
+//            displayActivity.add(retrievedActivity[rdm3]+" At: "+String.valueOf(hour3)+" : "+minuteThree);
         }
         else if(hour2>=0){
             int numOfRetrieved = retrievedActivity.length;
             int rdm1 = (int)((Math.random()*numOfRetrieved));
             int rdm2 = (int)((Math.random()*numOfRetrieved));
-            displayActivity.add(retrievedActivity[rdm1]+" Time is: "+String.valueOf(hour1)+" : "+String.valueOf(minute1));
-            displayActivity.add(retrievedActivity[rdm2]+" Time is: "+String.valueOf(hour2)+" : "+String.valueOf(minute2));
+            String minuteOne = minute1<10?"0"+String.valueOf(minute1):String.valueOf(minute1);
+            String minuteTwo = minute2<10?"0"+String.valueOf(minute2):String.valueOf(minute2);
+//            displayActivity.add(retrievedActivity[rdm1]+" At: "+String.valueOf(hour1)+" : "+minuteOne);
+//            displayActivity.add(retrievedActivity[rdm2]+" At: "+String.valueOf(hour2)+" : "+minuteTwo);
+            displayActivity.set(0,retrievedActivity[rdm1]+" At: "+String.valueOf(hour1)+" : "+minuteOne);
+            displayActivity.set(1,retrievedActivity[rdm2]+" At: "+String.valueOf(hour2)+" : "+minuteTwo);
         }
         else{
             int numOfRetrieved = retrievedActivity.length;
             int rdm1 = (int)((Math.random()*numOfRetrieved));
-            displayActivity.add(retrievedActivity[rdm1]+" Time is: "+String.valueOf(hour1)+" : "+String.valueOf(minute1));
+            String minuteOne = minute1<10?"0"+String.valueOf(minute1):String.valueOf(minute1);
+//            displayActivity.add(retrievedActivity[rdm1]+" At: "+String.valueOf(hour1)+":"+minuteOne);
+            displayActivity.set(0,retrievedActivity[rdm1]+" At: "+String.valueOf(hour1)+" : "+minuteOne);
         }
         /*display to listview at this page*/
-        ArrayAdapter arrayAdapterForResult = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1,displayActivity);
+        ArrayAdapter arrayAdapterForResult;
+
+        arrayAdapterForResult = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1,displayActivity);
         listResult.setAdapter(arrayAdapterForResult);
+        arrayAdapterForResult.notifyDataSetChanged();
             }
         });
         /*according to number of time selected by user, randomly assign result for display*/
@@ -140,7 +158,7 @@ public class ActivityResult extends AppCompatActivity {
         String energyRetrieve = String.valueOf(energy);
         String freshRetrieve = String.valueOf(fresh);
         String ageRetrieve = String.valueOf(childage);
-        String url = "http://10.0.0.146/TogetherWeGrow/findActivity.php?energy="+energyRetrieve+ "&fresh=" + freshRetrieve+ "&age=" + ageRetrieve;
+        String url = "http://10.0.0.74/TogetherWeGrow/findActivity.php?energy="+energyRetrieve+ "&fresh=" + freshRetrieve+ "&age=" + ageRetrieve;
         //GET request
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -173,12 +191,7 @@ public class ActivityResult extends AppCompatActivity {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 Log.e("activity: ",jsonObject.getString("activity"));
                 activityVar = jsonObject.getString("activity");
-//                energyVar = jsonObject.getDouble("energy");
-//                freshVar = jsonObject.getDouble("fresh");
-                System.out.println("sssss: " + activityVar);
-                retrievedActivity[i]="Activity: "+activityVar;
-//                ageVar = jsonObject.getInt("age");
-                //textView.append("activity: "+activityVar+"energy need: "+energyVar+"fresh need: "+freshVar+"age: "+"\n");
+                retrievedActivity[i]=activityVar;
             }
         } catch (JSONException e) {
             e.printStackTrace();
