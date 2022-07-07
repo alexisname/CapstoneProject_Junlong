@@ -8,24 +8,25 @@
     android:gravity="center"
     android:layout_gravity="center"
     tools:context=".ActivityResult">
-
-<!--    <ListView-->
-<!--        android:id="@+id/listView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_alignParentLeft="true"-->
-<!--        android:layout_alignParentStart="true"-->
-<!--        android:layout_alignParentTop="true" />-->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/result"
-        />
-    <Button
-        android:id="@+id/btnRes"
-        android:text="Get Your Result"
+        android:id="@+id/clickRes"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="50dp"
+        android:text="Click Here For Your Plan"
+        android:textSize="30sp"
+        android:layout_gravity="center"
+        android:textColor="@color/teal_700"
+        android:layout_marginTop="50dp"/>
+
+    <ListView
+        android:id="@+id/listResult"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />
+
+
 
 
 </LinearLayout>

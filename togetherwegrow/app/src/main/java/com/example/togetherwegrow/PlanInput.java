@@ -2,7 +2,11 @@ package com.example.togetherwegrow;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -13,7 +17,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 public class PlanInput extends AppCompatActivity{
     /*fields to be sent to database*/
@@ -29,7 +36,30 @@ public class PlanInput extends AppCompatActivity{
     private String secondpreferred;
     private String thirdpreferred;
     private String dislike;
+    int hour1;
+    int minute1;
+    int hour2;
+    int minute2;
+    int hour3;
+    int minute3;
 
+    Spinner spworktype;
+    Spinner spworkload;
+    Spinner spfreshness;
+    //Spinner sphour1;
+    //Spinner sphour2;
+    //Spinner sphour3;
+    Spinner spage;
+    Spinner spmost;
+    Spinner spsecond;
+    Spinner spthird;
+    Spinner spdis;
+    Button iptBTM;
+    Button iptSMT;
+    Button timeBtn1;
+    Button timeBtn2;
+    Button timeBtn3;
+    Button timeRst;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,19 +69,23 @@ public class PlanInput extends AppCompatActivity{
         Intent intent = getIntent();
         username = intent.getStringExtra(Intent.EXTRA_TEXT);
         /*initialize dropdown list and buttons*/
-        Spinner spworktype = findViewById(R.id.spworktype);
-        Spinner spworkload = findViewById(R.id.spworkload);
-        Spinner spfreshness = findViewById(R.id.spfreshness);
-        Spinner sphour1 = findViewById(R.id.sphour1);
-        Spinner sphour2 = findViewById(R.id.sphour2);
-        Spinner sphour3 = findViewById(R.id.sphour3);
-        Spinner spage = findViewById(R.id.spage);
-        Spinner spmost = findViewById(R.id.spmost);
-        Spinner spsecond = findViewById(R.id.spsecond);
-        Spinner spthird = findViewById(R.id.spthird);
-        Spinner spdis = findViewById(R.id.spdis);
-        Button iptBTM = findViewById(R.id.inputBTM);
-        Button iptSMT = findViewById(R.id.inputSMT);
+        spworktype = findViewById(R.id.spworktype);
+        spworkload = findViewById(R.id.spworkload);
+        spfreshness = findViewById(R.id.spfreshness);
+        //sphour1 = findViewById(R.id.sphour1);
+        //sphour2 = findViewById(R.id.sphour2);
+        //sphour3 = findViewById(R.id.sphour3);
+        spage = findViewById(R.id.spage);
+        spmost = findViewById(R.id.spmost);
+        spsecond = findViewById(R.id.spsecond);
+        spthird = findViewById(R.id.spthird);
+        spdis = findViewById(R.id.spdis);
+        iptBTM = findViewById(R.id.inputBTM);
+        iptSMT = findViewById(R.id.inputSMT);
+        timeBtn1 = findViewById(R.id.time1);
+        timeBtn2 = findViewById(R.id.time2);
+        timeBtn3 = findViewById(R.id.time3);
+        timeRst = findViewById(R.id.timeRst);
 
         /*assign content for work type dropdown list*/
         ArrayAdapter<CharSequence> worktypeAdapter = ArrayAdapter.createFromResource(this,R.array.worktype, R.layout.spinner_layout);
@@ -101,50 +135,107 @@ public class PlanInput extends AppCompatActivity{
         });
 
         /*assign content for activityhour dropdown list*/
-        ArrayAdapter<CharSequence> hour1Adapter = ArrayAdapter.createFromResource(this,R.array.activityhour, R.layout.spinner_layout);
-        hour1Adapter.setDropDownViewResource(R.layout.spinner_layout);
-        sphour1.setAdapter(hour1Adapter);
-        sphour1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                activityhour1 = sphour1.getSelectedItem().toString();
-            }
+//        ArrayAdapter<CharSequence> hour1Adapter = ArrayAdapter.createFromResource(this,R.array.activityhour, R.layout.spinner_layout);
+//        hour1Adapter.setDropDownViewResource(R.layout.spinner_layout);
+//        sphour1.setAdapter(hour1Adapter);
+//        sphour1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                activityhour1 = sphour1.getSelectedItem().toString();
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
+//
+//        /*assign content for activityhour dropdown list*/
+//        ArrayAdapter<CharSequence> hour2Adapter = ArrayAdapter.createFromResource(this,R.array.activityhour, R.layout.spinner_layout);
+//        hour2Adapter.setDropDownViewResource(R.layout.spinner_layout);
+//        sphour2.setAdapter(hour2Adapter);
+//        sphour2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                activityhour2 = sphour2.getSelectedItem().toString();
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+        /*assign content for activityhour dropdown list*/
+//        ArrayAdapter<CharSequence> hour3Adapter = ArrayAdapter.createFromResource(this,R.array.activityhour, R.layout.spinner_layout);
+//        hour3Adapter.setDropDownViewResource(R.layout.spinner_layout);
+//        sphour3.setAdapter(hour3Adapter);
+//        sphour3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                activityhour3 = sphour3.getSelectedItem().toString();
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
 
+        timeBtn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog.OnTimeSetListener onTimeSetListener1 = new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {
+                        hour1 = selectedHour;
+                        minute1 = selectedMinute;
+                        timeBtn1.setText(String.format(Locale.getDefault(),"%02d:%02d",hour1, minute1));
+                    }
+                };
+                int style = android.R.style.Theme_Holo;
+                TimePickerDialog timePickerDialog1 = new TimePickerDialog(PlanInput.this,style,onTimeSetListener1,hour1,minute1,true);
+                timePickerDialog1.setTitle("Select Time");
+                timePickerDialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                timePickerDialog1.show();
             }
         });
 
-        /*assign content for activityhour dropdown list*/
-        ArrayAdapter<CharSequence> hour2Adapter = ArrayAdapter.createFromResource(this,R.array.activityhour, R.layout.spinner_layout);
-        hour2Adapter.setDropDownViewResource(R.layout.spinner_layout);
-        sphour2.setAdapter(hour2Adapter);
-        sphour2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+        timeBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                activityhour2 = sphour2.getSelectedItem().toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+            public void onClick(View v) {
+                TimePickerDialog.OnTimeSetListener onTimeSetListener2 = new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {
+                        hour2 = selectedHour;
+                        minute2 = selectedMinute;
+                        timeBtn2.setText(String.format(Locale.getDefault(),"%02d:%02d",hour2, minute2));
+                    }
+                };
+                int style = android.R.style.Theme_Holo;
+                TimePickerDialog timePickerDialog2 = new TimePickerDialog(PlanInput.this,style,onTimeSetListener2,hour2,minute2,true);
+                timePickerDialog2.setTitle("Select Time");
+                timePickerDialog2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                timePickerDialog2.show();
             }
         });
 
-        /*assign content for activityhour dropdown list*/
-        ArrayAdapter<CharSequence> hour3Adapter = ArrayAdapter.createFromResource(this,R.array.activityhour, R.layout.spinner_layout);
-        hour3Adapter.setDropDownViewResource(R.layout.spinner_layout);
-        sphour3.setAdapter(hour3Adapter);
-        sphour3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+        timeBtn3.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                activityhour3 = sphour3.getSelectedItem().toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+            public void onClick(View v) {
+                TimePickerDialog.OnTimeSetListener onTimeSetListener3 = new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {
+                        hour3 = selectedHour;
+                        minute3 = selectedMinute;
+                        timeBtn3.setText(String.format(Locale.getDefault(),"%02d:%02d",hour3, minute3));
+                    }
+                };
+                int style = android.R.style.Theme_Holo;
+                TimePickerDialog timePickerDialog3 = new TimePickerDialog(PlanInput.this,style,onTimeSetListener3,hour3,minute3,true);
+                timePickerDialog3.setTitle("Select Time");
+                timePickerDialog3.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                timePickerDialog3.show();
             }
         });
 
@@ -241,14 +332,13 @@ public class PlanInput extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 //if all fields are filled, calculate
-                if(activityhour1.equals("N/A")&& activityhour2.equals("N/A")&& activityhour3.equals("N/A")){
+                if(timeBtn1.getText().equals("Select Time")&& timeBtn2.getText().equals("Select Time")&& timeBtn3.getText().equals("Select Time")){
                     Toast.makeText(getApplicationContext(), "Choose at least one time slot", Toast.LENGTH_SHORT).show();
                 }
                 else if(mostpreferred.equals("N/A")&& secondpreferred.equals("N/A") && thirdpreferred.equals("N/A")){
                     Toast.makeText(getApplicationContext(), "Choose at least one preference", Toast.LENGTH_SHORT).show();
                 }
                 else if(!username.equals("") && !worktype.equals("")&& !workload.equals("")&& !freshnessafterwork.equals("")
-                        && !activityhour1.equals("")&& !activityhour2.equals("")&& !activityhour3.equals("")
                         && !childage.equals("")&& !mostpreferred.equals("")&& !secondpreferred.equals("")
                         && !thirdpreferred.equals("")&& !dislike.equals("")) {
                     InputMatch inputMatch = new InputMatch(worktype, workload, freshnessafterwork, mostpreferred, secondpreferred, thirdpreferred, childage);
@@ -258,6 +348,32 @@ public class PlanInput extends AppCompatActivity{
                     intentSMT.putExtra("energy", inputMatch.getEnergy());
                     intentSMT.putExtra("fresh", inputMatch.getFreshness());
                     intentSMT.putExtra("age", Integer.valueOf(childage));
+                    if(timeBtn1.getText().equals("Select Time")){
+                        intentSMT.putExtra("hour1",-1);
+                        intentSMT.putExtra("minute1",-1);
+                    }else{
+                        intentSMT.putExtra("hour1",hour1);
+                        intentSMT.putExtra("minute1",minute1);
+                    }
+                    if(timeBtn2.getText().equals("Select Time")){
+                        intentSMT.putExtra("hour2",-1);
+                        intentSMT.putExtra("minute2",-1);
+                    }else{
+                        intentSMT.putExtra("hour2",hour2);
+                        intentSMT.putExtra("minute2",minute2);
+                    }
+                    if(timeBtn3.getText().equals("Select Time")){
+                        intentSMT.putExtra("hour3",-1);
+                        intentSMT.putExtra("minute3",-1);
+                    }else{
+                        intentSMT.putExtra("hour3",hour3);
+                        intentSMT.putExtra("minute3",minute3);
+                    }
+
+//                    intentSMT.putExtra("hour2",hour2);
+//                    intentSMT.putExtra("minute2",minute2);
+//                    intentSMT.putExtra("hour3",hour3);
+//                    intentSMT.putExtra("minute3",minute3);
                     startActivity(intentSMT);
                     finish();
                 }
@@ -267,76 +383,16 @@ public class PlanInput extends AppCompatActivity{
             }
         });
 
-//        /*
-//        add onclick listener to submit input button
-//        it checks if all fields are filled
-//        and POST to database
-//        if succeed, it shows submit succeeds
-//        else shows error message
-//         */
-//        iptSMT.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                /*check if all fields are filled*/
-//                if(!username.equals("") && !worktype.equals("")&& !workload.equals("")&& !freshnessafterwork.equals("")
-//                        && !activityhour1.equals("")&& !activityhour2.equals("")&& !activityhour3.equals("")
-//                        && !childage.equals("")&& !mostpreferred.equals("")&& !secondpreferred.equals("")
-//                        && !thirdpreferred.equals("")&& !dislike.equals("")){
-//                    /*handler to open a thread to pass the message to database*/
-//                    Handler handler = new Handler(Looper.getMainLooper());
-//                    handler.post(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            /*put data input array and write to database*/
-//                            String[] field = new String[12];
-//                            field[0] = "username";
-//                            field[1] = "worktype";
-//                            field[2] = "workload";
-//                            field[3] = "freshnessafterwork";
-//                            field[4] = "activityhour1";
-//                            field[5] = "activityhour2";
-//                            field[6] = "activityhour3";
-//                            field[7] = "childage";
-//                            field[8] = "mostpreferred";
-//                            field[9] = "secondpreferred";
-//                            field[10] = "thirdpreferred";
-//                            field[11] = "dislike";
-//                            String[] data = new String[12];
-//                            data[0] = username;
-//                            data[1] = worktype;
-//                            data[2] = workload;
-//                            data[3] = freshnessafterwork;
-//                            data[4] = activityhour1;
-//                            data[5] = activityhour2;
-//                            data[6] = activityhour3;
-//                            data[7] = childage;
-//                            data[8] = mostpreferred;
-//                            data[9] = secondpreferred;
-//                            data[10] = thirdpreferred;
-//                            data[11] = dislike;
-//                            /*use SendData helper for url connection and IO stream
-//                             * check the returned result on completion of data sending
-//                             */
-//                            SendData sendData = new SendData("http://10.0.0.146/TogetherWeGrow/input.php","POST",field,data);
-//                            if(sendData.startSend()){
-//                                if(sendData.onComplete()){
-//                                    String result = sendData.getResult();
-//                                    if(result.equals("Your input has been saved")){ //if log in succeed, redirect to welcome home page
-//                                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-//                                    }
-//                                    else {//show error message to user
-//                                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    });
-//                }
-//                else {//if user leaves a field empty
-//                    Toast.makeText(getApplicationContext(), "All fields are required", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
+        /*onclick listener for resetting time*/
+        timeRst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timeBtn1.setText("Select Time");
+                timeBtn2.setText("Select Time");
+                timeBtn3.setText("Select Time");
+            }
+        });
+
 
         /*onclick listener for back to main page*/
         iptBTM.setOnClickListener(new View.OnClickListener() {
@@ -348,6 +404,5 @@ public class PlanInput extends AppCompatActivity{
             }
         });
     }
-
 
 }

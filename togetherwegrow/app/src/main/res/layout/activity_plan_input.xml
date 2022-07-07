@@ -90,68 +90,106 @@
         android:layout_marginTop="0dp" />
 
 
-    <TextView
-        android:id="@+id/txthour1"
-        android:layout_width="wrap_content"
+
+<!--    <TextView-->
+<!--        android:id="@+id/txthour1"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="220dp"-->
+<!--        android:layout_marginLeft="30dp"-->
+<!--        android:text="Activity Hour 1"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="12sp" />-->
+
+<!--    <Spinner-->
+<!--        android:id="@+id/sphour1"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/txthour1"-->
+<!--        android:layout_alignStart="@+id/txthour1"-->
+<!--        android:layout_marginStart="0dp"-->
+<!--        android:layout_marginTop="0dp" />-->
+
+
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/txthour2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="220dp"-->
+<!--        android:layout_toRightOf="@id/txthour1"-->
+<!--        android:layout_marginLeft="50dp"-->
+<!--        android:text="Activity Hour 2"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="12sp" />-->
+
+<!--    <Spinner-->
+<!--        android:id="@+id/sphour2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/txthour2"-->
+<!--        android:layout_alignStart="@+id/txthour2"-->
+<!--        android:layout_marginStart="0dp"-->
+<!--        android:layout_marginTop="0dp" />-->
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/txthour3"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="220dp"-->
+<!--        android:layout_toRightOf="@id/txthour2"-->
+<!--        android:layout_marginLeft="50dp"-->
+<!--        android:text="Activity Hour 3"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="12sp" />-->
+
+<!--    <Spinner-->
+<!--        android:id="@+id/sphour3"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/txthour3"-->
+<!--        android:layout_alignStart="@+id/txthour3"-->
+<!--        android:layout_marginStart="0dp"-->
+<!--        android:layout_marginTop="0dp" />-->
+    <Button
+        android:id="@+id/time1"
+        android:layout_width="105dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="220dp"
-        android:layout_marginLeft="30dp"
-        android:text="Activity Hour 1"
-        android:textColor="@color/black"
+        android:text="Select Time"
         android:textSize="12sp" />
 
-    <Spinner
-        android:id="@+id/sphour1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txthour1"
-        android:layout_alignStart="@+id/txthour1"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp" />
-
-
-
-
-    <TextView
-        android:id="@+id/txthour2"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/time2"
+        android:layout_width="105dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="220dp"
-        android:layout_toRightOf="@id/txthour1"
-        android:layout_marginLeft="50dp"
-        android:text="Activity Hour 2"
-        android:textColor="@color/black"
+        android:layout_toEndOf="@+id/time1"
+        android:layout_marginLeft="25dp"
+        android:text="Select Time"
         android:textSize="12sp" />
-
-    <Spinner
-        android:id="@+id/sphour2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txthour2"
-        android:layout_alignStart="@+id/txthour2"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp" />
-
-
-    <TextView
-        android:id="@+id/txthour3"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/time3"
+        android:layout_width="105dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="220dp"
-        android:layout_toRightOf="@id/txthour2"
-        android:layout_marginLeft="50dp"
-        android:text="Activity Hour 3"
-        android:textColor="@color/black"
+        android:layout_marginLeft="25dp"
+        android:layout_toEndOf="@+id/time2"
+        android:text="Select Time"
         android:textSize="12sp" />
 
-    <Spinner
-        android:id="@+id/sphour3"
+    <Button
+        android:id="@+id/timeRst"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txthour3"
-        android:layout_alignStart="@+id/txthour3"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp" />
+        android:layout_marginTop="280dp"
+        android:layout_marginLeft="25dp"
+        android:layout_toEndOf="@+id/time2"
+        android:text="Reset Time"
+        android:textSize="8sp" />
 
 
     <TextView
