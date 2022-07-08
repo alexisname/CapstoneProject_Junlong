@@ -8,11 +8,14 @@ import android.view.View;
 import android.widget.Button;
 
 public class StatusTrack extends AppCompatActivity {
-
+    String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status_track);
+
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username");
 
         /*onclick listener for back to main page*/
         Button trcBTM = findViewById(R.id.trackBTM);
@@ -20,6 +23,7 @@ public class StatusTrack extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentToMain = new Intent(getApplicationContext(),MainActivity.class);
+                intentToMain.putExtra("username",username);
                 startActivity(intentToMain);
                 finish();
             }

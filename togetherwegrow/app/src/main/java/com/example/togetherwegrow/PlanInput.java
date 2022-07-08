@@ -28,9 +28,6 @@ public class PlanInput extends AppCompatActivity{
     private String worktype;
     private String workload;
     private String freshnessafterwork;
-    private String activityhour1;
-    private String activityhour2;
-    private String activityhour3;
     private String childage;
     private String mostpreferred;
     private String secondpreferred;
@@ -46,9 +43,6 @@ public class PlanInput extends AppCompatActivity{
     Spinner spworktype;
     Spinner spworkload;
     Spinner spfreshness;
-    //Spinner sphour1;
-    //Spinner sphour2;
-    //Spinner sphour3;
     Spinner spage;
     Spinner spmost;
     Spinner spsecond;
@@ -67,14 +61,11 @@ public class PlanInput extends AppCompatActivity{
         setContentView(R.layout.activity_plan_input);
         /*receive current username and pass it to field username*/
         Intent intent = getIntent();
-        username = intent.getStringExtra(Intent.EXTRA_TEXT);
+        username = intent.getStringExtra("username");
         /*initialize dropdown list and buttons*/
         spworktype = findViewById(R.id.spworktype);
         spworkload = findViewById(R.id.spworkload);
         spfreshness = findViewById(R.id.spfreshness);
-        //sphour1 = findViewById(R.id.sphour1);
-        //sphour2 = findViewById(R.id.sphour2);
-        //sphour3 = findViewById(R.id.sphour3);
         spage = findViewById(R.id.spage);
         spmost = findViewById(R.id.spmost);
         spsecond = findViewById(R.id.spsecond);
@@ -369,11 +360,7 @@ public class PlanInput extends AppCompatActivity{
                         intentSMT.putExtra("hour3",hour3);
                         intentSMT.putExtra("minute3",minute3);
                     }
-
-//                    intentSMT.putExtra("hour2",hour2);
-//                    intentSMT.putExtra("minute2",minute2);
-//                    intentSMT.putExtra("hour3",hour3);
-//                    intentSMT.putExtra("minute3",minute3);
+                    intentSMT.putExtra("username",username);
                     startActivity(intentSMT);
                     finish();
                 }
@@ -399,6 +386,7 @@ public class PlanInput extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intentToMain = new Intent(getApplicationContext(),MainActivity.class);
+                intentToMain.putExtra("username",username);
                 startActivity(intentToMain);
                 finish();
             }

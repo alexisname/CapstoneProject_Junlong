@@ -77,7 +77,7 @@ public class LogIn extends AppCompatActivity {
                                     if(result.equals("Login Success")){ //if log in succeed, redirect to welcome home page
                                         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                                        intent.putExtra(Intent.EXTRA_TEXT,username);//pass current logged username together to the main page
+                                        intent.putExtra("username",username);//pass current logged username together to the main page
                                         startActivity(intent);
                                         finish();
 

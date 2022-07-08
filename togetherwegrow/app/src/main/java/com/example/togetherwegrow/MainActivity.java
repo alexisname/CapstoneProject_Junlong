@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         /*display welcome info to current user via intent from previous login*/
         Intent intent = getIntent();
-        String currUser = intent.getStringExtra(Intent.EXTRA_TEXT);
+        String currUser = intent.getStringExtra("username");
         TextView wlcUser = findViewById(R.id.usernamemain);
         wlcUser.setText(currUser);
 
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentToInput = new Intent(getApplicationContext(),PlanInput.class);
-                intentToInput.putExtra(Intent.EXTRA_TEXT,currUser); //pass current username to input page
+                intentToInput.putExtra("username",currUser); //pass current username to input page
                 startActivity(intentToInput);
                 finish();
             }
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentToTrack = new Intent(getApplicationContext(),StatusTrack.class);
-                intentToTrack.putExtra(Intent.EXTRA_TEXT,currUser); //pass current username to track page
+                intentToTrack.putExtra("username",currUser); //pass current username to track page
                 startActivity(intentToTrack);
                 finish();
             }
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentToRec = new Intent(getApplicationContext(),Recommendation.class);
-                intentToRec.putExtra(Intent.EXTRA_TEXT,currUser); //pass current username to recommendation page
+                intentToRec.putExtra("username",currUser); //pass current username to recommendation page
                 startActivity(intentToRec);
                 finish();
             }
