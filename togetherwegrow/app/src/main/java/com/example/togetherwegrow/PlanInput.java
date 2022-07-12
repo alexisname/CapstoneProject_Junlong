@@ -329,11 +329,17 @@ public class PlanInput extends AppCompatActivity{
                 else if(mostpreferred.equals("N/A")&& secondpreferred.equals("N/A") && thirdpreferred.equals("N/A")){
                     Toast.makeText(getApplicationContext(), "Choose at least one preference", Toast.LENGTH_SHORT).show();
                 }
+                else if(!timeBtn1.getText().equals("Select Time") && (timeBtn1.getText().equals(timeBtn2.getText()) || timeBtn1.getText().equals(timeBtn3.getText()))
+                || !timeBtn2.getText().equals("Select Time") && (timeBtn2.getText().equals(timeBtn1.getText()) || timeBtn2.getText().equals(timeBtn3.getText()))
+                || !timeBtn3.getText().equals("Select Time") && (timeBtn3.getText().equals(timeBtn1.getText()) || timeBtn3.getText().equals(timeBtn2.getText()))) {
+                    Toast.makeText(getApplicationContext(), "Two time slots should be not be the same", Toast.LENGTH_SHORT).show();
+                }
                 else if(!username.equals("") && !worktype.equals("")&& !workload.equals("")&& !freshnessafterwork.equals("")
                         && !childage.equals("")&& !mostpreferred.equals("")&& !secondpreferred.equals("")
                         && !thirdpreferred.equals("")&& !dislike.equals("")) {
                     InputMatch inputMatch = new InputMatch(worktype, workload, freshnessafterwork, mostpreferred, secondpreferred, thirdpreferred, childage);
-                    inputMatch.calPoints();//pass input to inputmatch then calculate
+                    inputMatch.calPoints();
+                    //pass input to inputmatch then calculate
                     //redirect to result page, with calculated points
                     Intent intentSMT = new Intent(getApplicationContext(), ActivityResult.class);
                     intentSMT.putExtra("energy", inputMatch.getEnergy());
