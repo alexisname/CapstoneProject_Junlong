@@ -15,12 +15,15 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 public class PlanInput extends AppCompatActivity{
     /*fields to be sent to database*/
@@ -33,6 +36,7 @@ public class PlanInput extends AppCompatActivity{
     private String secondpreferred;
     private String thirdpreferred;
     private String dislike;
+    private String selectDay;
     int hour1;
     int minute1;
     int hour2;
@@ -47,7 +51,8 @@ public class PlanInput extends AppCompatActivity{
     Spinner spmost;
     Spinner spsecond;
     Spinner spthird;
-    Spinner spdis;
+    Spinner spselectDay;
+    AutoCompleteTextView acdis;
     Button iptBTM;
     Button iptSMT;
     Button timeBtn1;
@@ -70,7 +75,8 @@ public class PlanInput extends AppCompatActivity{
         spmost = findViewById(R.id.spmost);
         spsecond = findViewById(R.id.spsecond);
         spthird = findViewById(R.id.spthird);
-        spdis = findViewById(R.id.spdis);
+        spselectDay = findViewById(R.id.spselectday);
+        acdis = findViewById(R.id.acdis);
         iptBTM = findViewById(R.id.inputBTM);
         iptSMT = findViewById(R.id.inputSMT);
         timeBtn1 = findViewById(R.id.time1);
@@ -295,14 +301,14 @@ public class PlanInput extends AppCompatActivity{
             }
         });
 
-        /*assign content for disklike dropdown list*/
-        ArrayAdapter<CharSequence> disAdapter = ArrayAdapter.createFromResource(this,R.array.activities, android.R.layout.simple_spinner_dropdown_item);
-        disAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spdis.setAdapter(disAdapter);
-        spdis.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+        /*assign content for select day dropdown list and convert to calendar day value*/
+        ArrayAdapter<CharSequence> selectDayAdapter = ArrayAdapter.createFromResource(this,R.array.daysOfWeek, android.R.layout.simple_spinner_dropdown_item);
+        selectDayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spselectDay.setAdapter(selectDayAdapter);
+        spselectDay.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                dislike = spdis.getSelectedItem().toString();
+                selectDay = spselectDay.getSelectedItem().toString();
             }
 
             @Override
@@ -311,9 +317,32 @@ public class PlanInput extends AppCompatActivity{
             }
         });
 
+        /*assign content for disklike autocompletetextview list*/
+        String[] dislikeArr = getResources().getStringArray(R.array.dislikes);
+        Set<String> dislikeSet = new HashSet<>();
+        for(String dis:dislikeArr){
+            dislikeSet.add(dis);
+        }
+        ArrayAdapter<String> disAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dislikeArr);
+        acdis.setAdapter(disAdapter);
+//        if(acdis.getText()!=null){
+//            dislike = acdis.getText().toString();
+//        }
+//        dislike = acdis.getText().toString();
+//        Log.e("dislike", dislike);
+        acdis.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(acdis.getText()!=null){
+                    dislike = acdis.getText().toString();
+                    Log.e("dislike click: ", dislike);
+                }
+            }
+        });
+
+
+
         /*calculate points according to input*/
-
-
         /*
         add onclick listener to submit input button
         when clicked, call calPoints() method to calculate input
@@ -328,6 +357,9 @@ public class PlanInput extends AppCompatActivity{
                 }
                 else if(mostpreferred.equals("N/A")&& secondpreferred.equals("N/A") && thirdpreferred.equals("N/A")){
                     Toast.makeText(getApplicationContext(), "Choose at least one preference", Toast.LENGTH_SHORT).show();
+                }
+                else if(dislike==null || !dislikeSet.contains(dislike)){
+                    Toast.makeText(getApplicationContext(), "Select listed dislike activity or N/A", Toast.LENGTH_SHORT).show();
                 }
                 else if(!timeBtn1.getText().equals("Select Time") && (timeBtn1.getText().equals(timeBtn2.getText()) || timeBtn1.getText().equals(timeBtn3.getText()))
                 || !timeBtn2.getText().equals("Select Time") && (timeBtn2.getText().equals(timeBtn1.getText()) || timeBtn2.getText().equals(timeBtn3.getText()))
@@ -345,6 +377,7 @@ public class PlanInput extends AppCompatActivity{
                     intentSMT.putExtra("energy", inputMatch.getEnergy());
                     intentSMT.putExtra("fresh", inputMatch.getFreshness());
                     intentSMT.putExtra("age", Integer.valueOf(childage));
+                    intentSMT.putExtra("selectDay", selectDay);
                     if(timeBtn1.getText().equals("Select Time")){
                         intentSMT.putExtra("hour1",-1);
                         intentSMT.putExtra("minute1",-1);

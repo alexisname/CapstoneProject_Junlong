@@ -153,6 +153,29 @@
 <!--        android:layout_alignStart="@+id/txthour3"-->
 <!--        android:layout_marginStart="0dp"-->
 <!--        android:layout_marginTop="0dp" />-->
+
+    <TextView
+        android:id="@+id/txtselectday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/acdis"
+        android:layout_alignStart="@+id/acdis"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="15dp"
+        android:text="Select a day"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <Spinner
+        android:id="@+id/spselectday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtselectday"
+        android:layout_alignStart="@+id/txtselectday"
+        android:layout_marginStart="0dp"
+
+        android:layout_marginTop="0dp" />
+
     <Button
         android:id="@+id/time1"
         android:layout_width="105dp"
@@ -276,20 +299,35 @@
         android:id="@+id/txtdis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="560dp"
+        android:layout_alignTop="@+id/txtmost"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/txtmost"
         android:text="Disliked Activity"
         android:textColor="@color/black"
         android:textSize="15sp" />
 
-    <Spinner
-        android:id="@+id/spdis"
+<!--    <Spinner-->
+<!--        android:id="@+id/spdis"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/txtdis"-->
+<!--        android:layout_alignStart="@+id/txtdis"-->
+<!--        android:layout_marginStart="0dp"-->
+<!--        android:layout_marginTop="0dp" />-->
+
+    <AutoCompleteTextView
+        android:id="@+id/acdis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtdis"
+        android:layout_marginTop="0dp"
         android:layout_alignStart="@+id/txtdis"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp" />
+        android:hint="Type and Select"
+        android:textSize="15sp"
+        android:completionThreshold="1"
+        android:completionHint="Select an activity"/>
 
     <LinearLayout
         android:id="@+id/LinearLayout02"

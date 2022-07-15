@@ -27,7 +27,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ActivityResult extends AppCompatActivity {
     /*specify fields and ui in xml*/
@@ -40,10 +43,13 @@ public class ActivityResult extends AppCompatActivity {
     int minute2;
     int hour3;
     int minute3;
+    int alarmDay;
     String username;
     String activityOne;
     String activityTwo;
     String activityThree;
+    String selectDay;
+    ArrayList<Integer> alarmDays;
     TextView clickForRes;
     TextView activityColumnOne;
     TextView activityColumnTwo;
@@ -77,6 +83,7 @@ public class ActivityResult extends AppCompatActivity {
         hour3 = intent.getIntExtra("hour3",0);
         minute3 = intent.getIntExtra("minute3",0);
         username = intent.getStringExtra("username");
+        selectDay = intent.getStringExtra("selectDay");
         //listResult = (ListView) findViewById(R.id.listResult);
         clickForRes = findViewById(R.id.clickRes);
         btnBack = findViewById(R.id.btnBack);
@@ -90,6 +97,7 @@ public class ActivityResult extends AppCompatActivity {
         btnSetOne = findViewById(R.id.btnSetOne);
         btnSetTwo = findViewById(R.id.btnSetTwo);
         btnSetThree = findViewById(R.id.btnSetThree);
+        alarmDays = new ArrayList<>();
 
 
         /*retrieve result from db and store them to string*/
@@ -98,6 +106,28 @@ public class ActivityResult extends AppCompatActivity {
         clickForRes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(selectDay.equals("Monday")){
+                    alarmDay = Calendar.MONDAY;
+                }
+                if(selectDay.equals("Tuesday")){
+                    alarmDay = Calendar.TUESDAY;
+                }
+                if(selectDay.equals("Wednesday")){
+                    alarmDay = Calendar.WEDNESDAY;
+                }
+                if(selectDay.equals("Thursday")){
+                    alarmDay = Calendar.TUESDAY;
+                }
+                if(selectDay.equals("Friday")){
+                    alarmDay = Calendar.FRIDAY;
+                }
+                if(selectDay.equals("Saturday")){
+                    alarmDay = Calendar.SATURDAY;
+                }
+                if(selectDay.equals("Sunday")){
+                    alarmDay = Calendar.SUNDAY;
+                }
+
                 /*according to number of time selected by user, randomly assign result for display*/
                 if(hour2>=0 && hour3>=0){
                     int numOfRetrieved = retrievedActivity.length;
@@ -185,6 +215,10 @@ public class ActivityResult extends AppCompatActivity {
                     intentAlarmOne.putExtra(AlarmClock.EXTRA_HOUR, hour1);
                     intentAlarmOne.putExtra(AlarmClock.EXTRA_MINUTES, minute1);
                     intentAlarmOne.putExtra(AlarmClock.EXTRA_MESSAGE, activityOne);
+                    if(alarmDay>0){
+                        alarmDays.add(alarmDay);
+                        intentAlarmOne.putExtra(AlarmClock.EXTRA_DAYS, alarmDays);
+                    }
                     intentAlarmOne.putExtra(AlarmClock.EXTRA_SKIP_UI,true);
                     startActivity(intentAlarmOne);
                 }
@@ -194,9 +228,14 @@ public class ActivityResult extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(hour2>=0){
+
                     Intent intentAlarmTwo = new Intent(AlarmClock.ACTION_SET_ALARM);
                     intentAlarmTwo.putExtra(AlarmClock.EXTRA_HOUR, hour2);
                     intentAlarmTwo.putExtra(AlarmClock.EXTRA_MINUTES, minute2);
+                    if(alarmDay>0){
+                        alarmDays.add(alarmDay);
+                        intentAlarmTwo.putExtra(AlarmClock.EXTRA_DAYS, alarmDays);
+                    }
                     intentAlarmTwo.putExtra(AlarmClock.EXTRA_MESSAGE, activityTwo);
                     intentAlarmTwo.putExtra(AlarmClock.EXTRA_SKIP_UI,true);
                     startActivity(intentAlarmTwo);
@@ -211,6 +250,10 @@ public class ActivityResult extends AppCompatActivity {
                     intentAlarmThree.putExtra(AlarmClock.EXTRA_HOUR, hour3);
                     intentAlarmThree.putExtra(AlarmClock.EXTRA_MINUTES, minute3);
                     intentAlarmThree.putExtra(AlarmClock.EXTRA_MESSAGE, activityThree);
+                    if(alarmDay>0){
+                        alarmDays.add(alarmDay);
+                        intentAlarmThree.putExtra(AlarmClock.EXTRA_DAYS, alarmDays);
+                    }
                     intentAlarmThree.putExtra(AlarmClock.EXTRA_SKIP_UI,true);
                     startActivity(intentAlarmThree);
                 }
@@ -228,112 +271,27 @@ public class ActivityResult extends AppCompatActivity {
                 finish();
             }
         });
-/*TODO set confirm button redirect to tracking page
-*
-* */
-//        btnConfirm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                intentOne = new Intent(AlarmClock.ACTION_SET_ALARM);
-//                intentOne.putExtra(AlarmClock.EXTRA_HOUR, hour1);
-//                intentOne.putExtra(AlarmClock.EXTRA_MINUTES, minute1);
-//                intentOne.putExtra(AlarmClock.EXTRA_MESSAGE, activityOne);
-//                intentOne.putExtra(AlarmClock.EXTRA_SKIP_UI,true);
-//                intentOne.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-////                PendingIntent pendOne = PendingIntent.getBroadcast(getApplicationContext(),1,intentOne,PendingIntent.FLAG_ONE_SHOT);
-////                AlarmManager alarmOne = (AlarmManager) getSystemService(ALARM_SERVICE);
-//                startActivity(intentOne);
-//                try {
-//                        Thread.sleep(5000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                if(hour2>=0 && hour3 >=0){
-//                    intentTwo = new Intent(AlarmClock.ACTION_SET_ALARM);
-//                    intentTwo.putExtra(AlarmClock.EXTRA_HOUR, hour2);
-//                    intentTwo.putExtra(AlarmClock.EXTRA_MINUTES, minute2);
-//                    intentTwo.putExtra(AlarmClock.EXTRA_MESSAGE, activityTwo);
-//                    intentTwo.putExtra(AlarmClock.EXTRA_SKIP_UI,true);
-//                    intentTwo.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    startActivity(intentTwo);
-//                    try {
-//                        Thread.sleep(5000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                    intentThree = new Intent(AlarmClock.ACTION_SET_ALARM);
-//                    intentThree.putExtra(AlarmClock.EXTRA_HOUR, hour3);
-//                    intentThree.putExtra(AlarmClock.EXTRA_MINUTES, minute3);
-//                    intentThree.putExtra(AlarmClock.EXTRA_MESSAGE, activityThree);
-//                    intentThree.putExtra(AlarmClock.EXTRA_SKIP_UI,true);
-//                    intentThree.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    startActivity(intentThree);
-//                    try {
-//                        Thread.sleep(5000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//                else if(hour2>=0){
-//                    intentTwo = new Intent(AlarmClock.ACTION_SET_ALARM);
-//                    intentTwo.putExtra(AlarmClock.EXTRA_HOUR, hour2);
-//                    intentTwo.putExtra(AlarmClock.EXTRA_MINUTES, minute2);
-//                    intentTwo.putExtra(AlarmClock.EXTRA_MESSAGE, activityTwo);
-//                    startActivity(intentOne);
-//                    startActivity(intentTwo);
-//
-//                    Intent[] intentsTwo = new Intent[2];
-//                    intentsTwo[0] = intentOne;
-//                    intentsTwo[1] = intentTwo;
-//                    startActivities(intentsTwo);
-//                }
-//
-//                else{
-//                    startActivity(intentOne);
-//                }
-//            }
-//        });
+
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentConfirm = new Intent(getApplicationContext(),StatusTrack.class);
+                if(activityOne!=null){
+                    intentConfirm.putExtra("activityOne",activityOne);
+                }
+                if(activityTwo!=null){
+                    intentConfirm.putExtra("activityTwo",activityTwo);
+                }
+                if(activityThree!=null){
+                    intentConfirm.putExtra("activityThree",activityThree);
+                }
+                startActivity(intentConfirm);
+                finish();
+            }
+        });
+
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if(requestCode == 1 && !secondSet && intentTwo!=null){
-//            secondSet = true;
-//            startActivityForResult(intentTwo,2);
-//        }
-//        if(requestCode == 2 && !thirdSet && intentThree!=null){
-//            thirdSet = true;
-//            startActivityForResult(intentThree,3);
-//        }
-//    }
-
-    //    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        Log.e("check","1done");
-//        startSecondAlarm();
-//        Log.e("check","2done");
-//        startThirdAlarm();
-//        Log.e("check","3done");
-//
-//    }
-//
-//    public void startSecondAlarm(){
-//        if(intentTwo!=null && !secondSet){
-//            startActivity(intentTwo);
-//            intentTwo=null;
-//        }
-//    }
-//
-//    public void startThirdAlarm(){
-//        if(intentThree!=null){
-//            Log.e("check","enter set three");
-//            startActivity(intentThree);
-//            intentThree=null;
-//        }
-//    }
 
     /*function to retrieve data via GET method*/
     public void retrieveData(double energy, double fresh, int childage){
