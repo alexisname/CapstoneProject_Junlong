@@ -54,13 +54,16 @@ class DataBase
 /*this function convert input string to double so that can be used to compare in table
 * and convert the result to json format
 */ 
-    function findActivity($table, $energy, $fresh, $age){
+    function findActivity($table, $energy, $fresh, $age, $dislike){
         $ansactivit = array();
         $energy = $this->prepareData($energy);
         $fresh = $this->prepareData($fresh);
+        $age = $this->prepareData($age);
+        $dislike = $this->prepareData($dislike);
         $energy = doubleval($energy);
         $fresh = doubleval($fresh);
-        $this->sql = "select * from " . $table . " where energyReq <= '" . $energy . "' and freshReq <= '" . $fresh . "' and ageLw <= '" . $age . "' and ageUp >= '" . $age . "'";
+        $age = doubleval($age);
+        $this->sql = "select * from " . $table . " where energyReq <= '" . $energy . "' and freshReq <= '" . $fresh . "' and ageLw <= '" . $age . "' and ageUp >= '" . $age . "'and activity <> '" . $dislike . "'";
         $result = mysqli_query($this->connect, $this->sql);
         if($result){
             header("Content-Type: JSON");

@@ -49,6 +49,7 @@ public class ActivityResult extends AppCompatActivity {
     String activityTwo;
     String activityThree;
     String selectDay;
+    String dislike;
     ArrayList<Integer> alarmDays;
     TextView clickForRes;
     TextView activityColumnOne;
@@ -84,6 +85,7 @@ public class ActivityResult extends AppCompatActivity {
         minute3 = intent.getIntExtra("minute3",0);
         username = intent.getStringExtra("username");
         selectDay = intent.getStringExtra("selectDay");
+        dislike = intent.getStringExtra("dislike");
         //listResult = (ListView) findViewById(R.id.listResult);
         clickForRes = findViewById(R.id.clickRes);
         btnBack = findViewById(R.id.btnBack);
@@ -300,7 +302,7 @@ public class ActivityResult extends AppCompatActivity {
         String energyRetrieve = String.valueOf(energy);
         String freshRetrieve = String.valueOf(fresh);
         String ageRetrieve = String.valueOf(childage);
-        String url = "http://10.0.0.74/TogetherWeGrow/findActivity.php?energy="+energyRetrieve+ "&fresh=" + freshRetrieve+ "&age=" + ageRetrieve;
+        String url = "http://10.0.0.74/TogetherWeGrow/findActivity.php?energy="+energyRetrieve+ "&fresh=" + freshRetrieve+ "&age=" + ageRetrieve+"&dislike=" + dislike;
         //GET request
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {

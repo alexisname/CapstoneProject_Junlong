@@ -131,60 +131,13 @@ public class PlanInput extends AppCompatActivity{
             }
         });
 
-        /*assign content for activityhour dropdown list*/
-//        ArrayAdapter<CharSequence> hour1Adapter = ArrayAdapter.createFromResource(this,R.array.activityhour, R.layout.spinner_layout);
-//        hour1Adapter.setDropDownViewResource(R.layout.spinner_layout);
-//        sphour1.setAdapter(hour1Adapter);
-//        sphour1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                activityhour1 = sphour1.getSelectedItem().toString();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//
-//        /*assign content for activityhour dropdown list*/
-//        ArrayAdapter<CharSequence> hour2Adapter = ArrayAdapter.createFromResource(this,R.array.activityhour, R.layout.spinner_layout);
-//        hour2Adapter.setDropDownViewResource(R.layout.spinner_layout);
-//        sphour2.setAdapter(hour2Adapter);
-//        sphour2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                activityhour2 = sphour2.getSelectedItem().toString();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-
-        /*assign content for activityhour dropdown list*/
-//        ArrayAdapter<CharSequence> hour3Adapter = ArrayAdapter.createFromResource(this,R.array.activityhour, R.layout.spinner_layout);
-//        hour3Adapter.setDropDownViewResource(R.layout.spinner_layout);
-//        sphour3.setAdapter(hour3Adapter);
-//        sphour3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                activityhour3 = sphour3.getSelectedItem().toString();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-
+        /*assign time picker for three time slots*/
         timeBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TimePickerDialog.OnTimeSetListener onTimeSetListener1 = new TimePickerDialog.OnTimeSetListener() {
                     @Override
-                    public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {
+                    public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {// on select, assign value to hour and minute
                         hour1 = selectedHour;
                         minute1 = selectedMinute;
                         timeBtn1.setText(String.format(Locale.getDefault(),"%02d:%02d",hour1, minute1));
@@ -203,7 +156,7 @@ public class PlanInput extends AppCompatActivity{
             public void onClick(View v) {
                 TimePickerDialog.OnTimeSetListener onTimeSetListener2 = new TimePickerDialog.OnTimeSetListener() {
                     @Override
-                    public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {
+                    public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {// on select, assign value to hour and minute
                         hour2 = selectedHour;
                         minute2 = selectedMinute;
                         timeBtn2.setText(String.format(Locale.getDefault(),"%02d:%02d",hour2, minute2));
@@ -222,7 +175,7 @@ public class PlanInput extends AppCompatActivity{
             public void onClick(View v) {
                 TimePickerDialog.OnTimeSetListener onTimeSetListener3 = new TimePickerDialog.OnTimeSetListener() {
                     @Override
-                    public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {
+                    public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {// on select, assign value to hour and minute
                         hour3 = selectedHour;
                         minute3 = selectedMinute;
                         timeBtn3.setText(String.format(Locale.getDefault(),"%02d:%02d",hour3, minute3));
@@ -325,17 +278,12 @@ public class PlanInput extends AppCompatActivity{
         }
         ArrayAdapter<String> disAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dislikeArr);
         acdis.setAdapter(disAdapter);
-//        if(acdis.getText()!=null){
-//            dislike = acdis.getText().toString();
-//        }
-//        dislike = acdis.getText().toString();
-//        Log.e("dislike", dislike);
         acdis.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(acdis.getText()!=null){
                     dislike = acdis.getText().toString();
-                    Log.e("dislike click: ", dislike);
+                    //Log.e("dislike click: ", dislike);
                 }
             }
         });
@@ -378,6 +326,7 @@ public class PlanInput extends AppCompatActivity{
                     intentSMT.putExtra("fresh", inputMatch.getFreshness());
                     intentSMT.putExtra("age", Integer.valueOf(childage));
                     intentSMT.putExtra("selectDay", selectDay);
+                    intentSMT.putExtra("dislike", dislike);
                     if(timeBtn1.getText().equals("Select Time")){
                         intentSMT.putExtra("hour1",-1);
                         intentSMT.putExtra("minute1",-1);

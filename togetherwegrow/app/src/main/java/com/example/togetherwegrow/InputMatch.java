@@ -54,7 +54,7 @@ public class InputMatch {
     private String thirdPreferred;
     /*fields for other factors*/
     private String age;
-    /*TODO how to calculate time*/
+
 
     private double energyP;    //factors for parent
     private double freshnessP;
@@ -112,7 +112,7 @@ public class InputMatch {
             freshnessP--;
         }
         /*calculate points regarding child's preference*/
-        /*TODO consider the second or third pref might be N/A, change weight*/
+        /*consider the second or third pref might be N/A, change weight*/
         /*if all three preferences are filled*/
         if(!mostPreferred.equals("N/A") && !secondPreferred.equals("N/A") && !thirdPreferred.equals("N/A")){
             energyC = 0.6*activityMap.get(mostPreferred)[0]+0.3*activityMap.get(secondPreferred)[0]+0.1*activityMap.get(thirdPreferred)[0];
@@ -127,42 +127,6 @@ public class InputMatch {
             freshnessC = activityMap.get(mostPreferred)[1];
         }
 
-//        if(mostPreferred.equals("reading")||mostPreferred.equals("drawing")||mostPreferred.equals("Cartoon")){
-//            energyC = 0.6*2.0;
-//            freshnessC = 0.6*4.0;
-//        }
-//        else if(mostPreferred.equals("Sports")){
-//            energyC = 0.6*4.0;
-//            freshnessC = 0.6*2.0;
-//        }
-//        else if(mostPreferred.equals("Game")){
-//            energyC = 0.6*3.0;
-//            freshnessC = 0.6*3.0;
-//        }
-//        if(secondPreferred.equals("reading")||secondPreferred.equals("drawing")||secondPreferred.equals("Cartoon")){
-//            energyC += 0.3*2.0;
-//            freshnessC += 0.3*4.0;
-//        }
-//        else if(secondPreferred.equals("Sports")){
-//            energyC += 0.3*4.0;
-//            freshnessC += 0.3*2.0;
-//        }
-//        else if(secondPreferred.equals("Game")){
-//            energyC += 0.3*3.0;
-//            freshnessC += 0.3*3.0;
-//        }
-//        if(thirdPreferred.equals("reading")||thirdPreferred.equals("drawing")||thirdPreferred.equals("Cartoon")){
-//            energyC += 0.1*2.0;
-//            freshnessC += 0.1*4.0;
-//        }
-//        else if(thirdPreferred.equals("Sports")){
-//            energyC += 0.1*4.0;
-//            freshnessC += 0.1*2.0;
-//        }
-//        else if(thirdPreferred.equals("Game")){
-//            energyC += 0.1*3.0;
-//            freshnessC += 0.1*3.0;
-//        }
         /*calculate total*/
         energy = 0.4*energyP + 0.6*energyC;
         freshness = 0.4*freshnessP + 0.6*freshnessC;
