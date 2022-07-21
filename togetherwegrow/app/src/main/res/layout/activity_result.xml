@@ -41,6 +41,16 @@
         android:textSize="10sp" />
 
     <Button
+        android:id="@+id/btnCalOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activityOne"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="30dp"
+        android:text="set calendar"
+        android:textSize="10sp" />
+
+    <Button
         android:id="@+id/btnShuffleOne"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -72,6 +82,16 @@
         android:textSize="10sp" />
 
     <Button
+        android:id="@+id/btnCalTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activityTwo"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="30dp"
+        android:text="set calendar"
+        android:textSize="10sp" />
+
+    <Button
         android:id="@+id/btnShuffleTwo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -100,6 +120,16 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
         android:text="set alarm"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/btnCalThree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activityThree"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="30dp"
+        android:text="set calendar"
         android:textSize="10sp" />
 
     <Button

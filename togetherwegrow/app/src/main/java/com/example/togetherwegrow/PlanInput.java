@@ -17,9 +17,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.HashSet;
 import java.util.Locale;
@@ -37,6 +40,7 @@ public class PlanInput extends AppCompatActivity{
     private String thirdpreferred;
     private String dislike;
     private String selectDay;
+    private String email;
     int hour1;
     int minute1;
     int hour2;
@@ -59,6 +63,7 @@ public class PlanInput extends AppCompatActivity{
     Button timeBtn2;
     Button timeBtn3;
     Button timeRst;
+    TextInputEditText txtemail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +88,7 @@ public class PlanInput extends AppCompatActivity{
         timeBtn2 = findViewById(R.id.time2);
         timeBtn3 = findViewById(R.id.time3);
         timeRst = findViewById(R.id.timeRst);
+        txtemail = findViewById(R.id.emaileditCal);
 
         /*assign content for work type dropdown list*/
         ArrayAdapter<CharSequence> worktypeAdapter = ArrayAdapter.createFromResource(this,R.array.worktype, R.layout.spinner_layout);
@@ -290,6 +296,8 @@ public class PlanInput extends AppCompatActivity{
 
 
 
+
+
         /*calculate points according to input*/
         /*
         add onclick listener to submit input button
@@ -317,6 +325,8 @@ public class PlanInput extends AppCompatActivity{
                 else if(!username.equals("") && !worktype.equals("")&& !workload.equals("")&& !freshnessafterwork.equals("")
                         && !childage.equals("")&& !mostpreferred.equals("")&& !secondpreferred.equals("")
                         && !thirdpreferred.equals("")&& !dislike.equals("")) {
+                    /*assign email content*/
+                    email = txtemail.getText().toString();
                     InputMatch inputMatch = new InputMatch(worktype, workload, freshnessafterwork, mostpreferred, secondpreferred, thirdpreferred, childage);
                     inputMatch.calPoints();
                     //pass input to inputmatch then calculate
@@ -327,6 +337,7 @@ public class PlanInput extends AppCompatActivity{
                     intentSMT.putExtra("age", Integer.valueOf(childage));
                     intentSMT.putExtra("selectDay", selectDay);
                     intentSMT.putExtra("dislike", dislike);
+                    intentSMT.putExtra("email", email);
                     if(timeBtn1.getText().equals("Select Time")){
                         intentSMT.putExtra("hour1",-1);
                         intentSMT.putExtra("minute1",-1);

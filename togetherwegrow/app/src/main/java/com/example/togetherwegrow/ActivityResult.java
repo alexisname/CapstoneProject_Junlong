@@ -7,7 +7,9 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
 import android.provider.AlarmClock;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -50,6 +52,7 @@ public class ActivityResult extends AppCompatActivity {
     String activityThree;
     String selectDay;
     String dislike;
+    String email;
     ArrayList<Integer> alarmDays;
     TextView clickForRes;
     TextView activityColumnOne;
@@ -64,6 +67,9 @@ public class ActivityResult extends AppCompatActivity {
     Button btnSetOne;
     Button btnSetTwo;
     Button btnSetThree;
+    Button btnCalOne;
+    Button btnCalTwo;
+    Button btnCalThree;
 
 
 
@@ -86,6 +92,7 @@ public class ActivityResult extends AppCompatActivity {
         username = intent.getStringExtra("username");
         selectDay = intent.getStringExtra("selectDay");
         dislike = intent.getStringExtra("dislike");
+        email = intent.getStringExtra("email");
         //listResult = (ListView) findViewById(R.id.listResult);
         clickForRes = findViewById(R.id.clickRes);
         btnBack = findViewById(R.id.btnBack);
@@ -99,7 +106,11 @@ public class ActivityResult extends AppCompatActivity {
         btnSetOne = findViewById(R.id.btnSetOne);
         btnSetTwo = findViewById(R.id.btnSetTwo);
         btnSetThree = findViewById(R.id.btnSetThree);
+        btnCalOne = findViewById(R.id.btnCalOne);
+        btnCalTwo = findViewById(R.id.btnCalTwo);
+        btnCalThree = findViewById(R.id.btnCalThree);
         alarmDays = new ArrayList<>();
+        Log.e("",email);
 
 
         /*retrieve result from db and store them to string*/
@@ -212,7 +223,7 @@ public class ActivityResult extends AppCompatActivity {
         btnSetOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(hour1>=0){
+                if(!activityOne.equals("")){
                     Intent intentAlarmOne = new Intent(AlarmClock.ACTION_SET_ALARM);
                     intentAlarmOne.putExtra(AlarmClock.EXTRA_HOUR, hour1);
                     intentAlarmOne.putExtra(AlarmClock.EXTRA_MINUTES, minute1);
@@ -229,7 +240,7 @@ public class ActivityResult extends AppCompatActivity {
         btnSetTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(hour2>=0){
+                if(!activityTwo.equals("")){
 
                     Intent intentAlarmTwo = new Intent(AlarmClock.ACTION_SET_ALARM);
                     intentAlarmTwo.putExtra(AlarmClock.EXTRA_HOUR, hour2);
@@ -247,7 +258,7 @@ public class ActivityResult extends AppCompatActivity {
         btnSetThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(hour3>=0){
+                if(!activityThree.equals("")){
                     Intent intentAlarmThree = new Intent(AlarmClock.ACTION_SET_ALARM);
                     intentAlarmThree.putExtra(AlarmClock.EXTRA_HOUR, hour3);
                     intentAlarmThree.putExtra(AlarmClock.EXTRA_MINUTES, minute3);
@@ -258,6 +269,65 @@ public class ActivityResult extends AppCompatActivity {
                     }
                     intentAlarmThree.putExtra(AlarmClock.EXTRA_SKIP_UI,true);
                     startActivity(intentAlarmThree);
+                }
+            }
+        });
+
+        /*set onclick listener for setting calendar events*/
+        btnCalOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!activityOne.equals("")){
+                    Intent intentCalOne = new Intent(Intent.ACTION_INSERT);
+                    intentCalOne.setData(CalendarContract.Events.CONTENT_URI);
+                    intentCalOne.putExtra(CalendarContract.Events.TITLE, activityOne);
+                    if(!email.equals("")){
+                        intentCalOne.putExtra(Intent.EXTRA_EMAIL,email);
+                    }
+                    if(intentCalOne.resolveActivity((getPackageManager()))!=null){
+                        startActivity(intentCalOne);
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "There is no app that can support this action",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+        btnCalTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!activityTwo.equals("")){
+                    Intent intentCalOne = new Intent(Intent.ACTION_INSERT);
+                    intentCalOne.setData(CalendarContract.Events.CONTENT_URI);
+                    intentCalOne.putExtra(CalendarContract.Events.TITLE, activityTwo);
+                    if(!email.equals("")){
+                        intentCalOne.putExtra(Intent.EXTRA_EMAIL,email);
+                    }
+                    if(intentCalOne.resolveActivity((getPackageManager()))!=null){
+                        startActivity(intentCalOne);
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "There is no app that can support this action",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+        btnCalThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!activityThree.equals("")){
+                    Intent intentCalOne = new Intent(Intent.ACTION_INSERT);
+                    intentCalOne.setData(CalendarContract.Events.CONTENT_URI);
+                    intentCalOne.putExtra(CalendarContract.Events.TITLE, activityThree);
+                    if(!email.equals("")){
+                        intentCalOne.putExtra(Intent.EXTRA_EMAIL,email);
+                    }
+                    if(intentCalOne.resolveActivity((getPackageManager()))!=null){
+                        startActivity(intentCalOne);
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "There is no app that can support this action",Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

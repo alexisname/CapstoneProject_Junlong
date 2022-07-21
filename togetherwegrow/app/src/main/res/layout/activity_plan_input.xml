@@ -91,69 +91,6 @@
 
 
 
-<!--    <TextView-->
-<!--        android:id="@+id/txthour1"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="220dp"-->
-<!--        android:layout_marginLeft="30dp"-->
-<!--        android:text="Activity Hour 1"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="12sp" />-->
-
-<!--    <Spinner-->
-<!--        android:id="@+id/sphour1"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/txthour1"-->
-<!--        android:layout_alignStart="@+id/txthour1"-->
-<!--        android:layout_marginStart="0dp"-->
-<!--        android:layout_marginTop="0dp" />-->
-
-
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/txthour2"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="220dp"-->
-<!--        android:layout_toRightOf="@id/txthour1"-->
-<!--        android:layout_marginLeft="50dp"-->
-<!--        android:text="Activity Hour 2"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="12sp" />-->
-
-<!--    <Spinner-->
-<!--        android:id="@+id/sphour2"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/txthour2"-->
-<!--        android:layout_alignStart="@+id/txthour2"-->
-<!--        android:layout_marginStart="0dp"-->
-<!--        android:layout_marginTop="0dp" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/txthour3"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="220dp"-->
-<!--        android:layout_toRightOf="@id/txthour2"-->
-<!--        android:layout_marginLeft="50dp"-->
-<!--        android:text="Activity Hour 3"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="12sp" />-->
-
-<!--    <Spinner-->
-<!--        android:id="@+id/sphour3"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/txthour3"-->
-<!--        android:layout_alignStart="@+id/txthour3"-->
-<!--        android:layout_marginStart="0dp"-->
-<!--        android:layout_marginTop="0dp" />-->
-
     <TextView
         android:id="@+id/txtselectday"
         android:layout_width="wrap_content"
@@ -165,6 +102,23 @@
         android:text="Select a day"
         android:textColor="@color/black"
         android:textSize="15sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailfieldCal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_below="@+id/txtthird"
+        android:layout_marginTop="50dp"
+        android:hint="Enter Email for Calendar Booking">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emaileditCal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_email"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Spinner
         android:id="@+id/spselectday"
@@ -307,14 +261,7 @@
         android:textColor="@color/black"
         android:textSize="15sp" />
 
-<!--    <Spinner-->
-<!--        android:id="@+id/spdis"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/txtdis"-->
-<!--        android:layout_alignStart="@+id/txtdis"-->
-<!--        android:layout_marginStart="0dp"-->
-<!--        android:layout_marginTop="0dp" />-->
+
 
     <AutoCompleteTextView
         android:id="@+id/acdis"
