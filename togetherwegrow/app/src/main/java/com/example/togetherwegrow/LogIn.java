@@ -70,7 +70,7 @@ public class LogIn extends AppCompatActivity {
                             /*use SendData helper for url connection and IO stream
                              * check the returned result on completion of data sending
                              */
-                            SendData sendData = new SendData("http://10.0.0.74/TogetherWeGrow/login.php","POST",field,data);
+                            SendData sendData = new SendData("http://35.183.174.53/TogetherWeGrow/login.php","POST",field,data);
                             if(sendData.startSend()){
                                 if(sendData.onComplete()){
                                     String result = sendData.getResult();

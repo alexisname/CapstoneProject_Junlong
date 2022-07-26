@@ -372,7 +372,7 @@ public class ActivityResult extends AppCompatActivity {
         String energyRetrieve = String.valueOf(energy);
         String freshRetrieve = String.valueOf(fresh);
         String ageRetrieve = String.valueOf(childage);
-        String url = "http://10.0.0.74/TogetherWeGrow/findActivity.php?energy="+energyRetrieve+ "&fresh=" + freshRetrieve+ "&age=" + ageRetrieve+"&dislike=" + dislike;
+        String url = "http://35.183.174.53/TogetherWeGrow/findActivity.php?energy="+energyRetrieve+ "&fresh=" + freshRetrieve+ "&age=" + ageRetrieve+"&dislike=" + dislike;
         //GET request
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {

@@ -73,7 +73,7 @@ public class SignUp extends AppCompatActivity {
                             /*use SendData helper for url connection and IO stream
                              * check the returned result on completion of data sending
                              */
-                            SendData putData = new SendData("http://10.0.0.74/TogetherWeGrow/signup.php","POST",field,data);
+                            SendData putData = new SendData("http://35.183.174.53/TogetherWeGrow/signup.php","POST",field,data);
                             if(putData.startSend()){
                                 if(putData.onComplete()){
                                     String result = putData.getResult();
