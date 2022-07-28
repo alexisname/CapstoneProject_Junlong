@@ -91,7 +91,7 @@ public class PlanInput extends AppCompatActivity{
         txtemail = findViewById(R.id.emaileditCal);
 
         /*assign content for work type dropdown list*/
-        ArrayAdapter<CharSequence> worktypeAdapter = ArrayAdapter.createFromResource(this,R.array.worktype, R.layout.spinner_layout);
+        ArrayAdapter<CharSequence> worktypeAdapter = ArrayAdapter.createFromResource(this,R.array.worktype, R.layout.spinner_item);
         worktypeAdapter.setDropDownViewResource(R.layout.spinner_layout);
         spworktype.setAdapter(worktypeAdapter);
         spworktype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
@@ -106,7 +106,7 @@ public class PlanInput extends AppCompatActivity{
             }
         });
         /*assign content for work load dropdown list*/
-        ArrayAdapter<CharSequence> workloadAdapter = ArrayAdapter.createFromResource(this,R.array.workload, R.layout.spinner_layout);
+        ArrayAdapter<CharSequence> workloadAdapter = ArrayAdapter.createFromResource(this,R.array.workload, R.layout.spinner_item);
         workloadAdapter.setDropDownViewResource(R.layout.spinner_layout);
         spworkload.setAdapter(workloadAdapter);
         spworkload.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
@@ -122,7 +122,7 @@ public class PlanInput extends AppCompatActivity{
         });
 
         /*assign content for energy dropdown list*/
-        ArrayAdapter<CharSequence> freshAdapter = ArrayAdapter.createFromResource(this,R.array.fresh, R.layout.spinner_layout);
+        ArrayAdapter<CharSequence> freshAdapter = ArrayAdapter.createFromResource(this,R.array.fresh, R.layout.spinner_item);
         freshAdapter.setDropDownViewResource(R.layout.spinner_layout);
         spfreshness.setAdapter(freshAdapter);
         spfreshness.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
@@ -197,7 +197,7 @@ public class PlanInput extends AppCompatActivity{
 
 
         /*assign content for age dropdown list*/
-        ArrayAdapter<CharSequence> ageAdapter = ArrayAdapter.createFromResource(this,R.array.age, android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> ageAdapter = ArrayAdapter.createFromResource(this,R.array.age, R.layout.spinner_item);
         ageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spage.setAdapter(ageAdapter);
         spage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
@@ -213,7 +213,7 @@ public class PlanInput extends AppCompatActivity{
         });
 
         /*assign content for activity 1 dropdown list*/
-        ArrayAdapter<CharSequence> mostAdapter = ArrayAdapter.createFromResource(this,R.array.activities, android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> mostAdapter = ArrayAdapter.createFromResource(this,R.array.activities, R.layout.spinner_item);
         mostAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spmost.setAdapter(mostAdapter);
         spmost.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
@@ -229,7 +229,7 @@ public class PlanInput extends AppCompatActivity{
         });
 
         /*assign content for activity 2 dropdown list*/
-        ArrayAdapter<CharSequence> secondAdapter = ArrayAdapter.createFromResource(this,R.array.activities, android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> secondAdapter = ArrayAdapter.createFromResource(this,R.array.activities, R.layout.spinner_item);
         secondAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spsecond.setAdapter(secondAdapter);
         spsecond.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
@@ -245,7 +245,7 @@ public class PlanInput extends AppCompatActivity{
         });
 
         /*assign content for activity 3 dropdown list*/
-        ArrayAdapter<CharSequence> thirdAdapter = ArrayAdapter.createFromResource(this,R.array.activities, android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> thirdAdapter = ArrayAdapter.createFromResource(this,R.array.activities, R.layout.spinner_item);
         thirdAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spthird.setAdapter(thirdAdapter);
         spthird.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
@@ -261,7 +261,7 @@ public class PlanInput extends AppCompatActivity{
         });
 
         /*assign content for select day dropdown list and convert to calendar day value*/
-        ArrayAdapter<CharSequence> selectDayAdapter = ArrayAdapter.createFromResource(this,R.array.daysOfWeek, android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> selectDayAdapter = ArrayAdapter.createFromResource(this,R.array.daysOfWeek, R.layout.spinner_item);
         selectDayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spselectDay.setAdapter(selectDayAdapter);
         spselectDay.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
@@ -293,10 +293,6 @@ public class PlanInput extends AppCompatActivity{
                 }
             }
         });
-
-
-
-
 
         /*calculate points according to input*/
         /*

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/withmom"
     tools:context=".PlanInput">
 
     <TextView
@@ -28,11 +29,12 @@
         android:layout_marginTop="130dp"
         android:layout_marginLeft="30dp"
         android:textSize="12sp"
-        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#99141414"
+        android:textColor="@color/white"/>
 
     <Spinner
         android:id="@+id/spworktype"
@@ -53,7 +55,8 @@
         android:layout_toRightOf="@id/txtworktype"
         android:layout_marginLeft="60dp"
         android:text="Work Load"
-        android:textColor="@color/black"
+        android:background="#99141414"
+        android:textColor="@color/white"
         android:textSize="12sp" />
 
 
@@ -76,7 +79,8 @@
         android:layout_toRightOf="@id/txtworkload"
         android:layout_marginLeft="60dp"
         android:text="Energy After Work"
-        android:textColor="@color/black"
+        android:background="#99141414"
+        android:textColor="@color/white"
         android:textSize="12sp" />
 
 
@@ -100,7 +104,8 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="15dp"
         android:text="Select a day"
-        android:textColor="@color/black"
+        android:background="#99141414"
+        android:textColor="@color/white"
         android:textSize="15sp" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -176,7 +181,8 @@
         android:layout_marginTop="320dp"
         android:layout_marginLeft="40dp"
         android:text="Child Age"
-        android:textColor="@color/black"
+        android:background="#99141414"
+        android:textColor="@color/white"
         android:textSize="15sp" />
 
     <Spinner
@@ -196,7 +202,8 @@
         android:layout_marginTop="380dp"
         android:layout_marginLeft="40dp"
         android:text="Most Preferred Activity"
-        android:textColor="@color/black"
+        android:background="#99141414"
+        android:textColor="@color/white"
         android:textSize="15sp" />
 
     <Spinner
@@ -216,7 +223,8 @@
         android:layout_marginTop="440dp"
         android:layout_marginLeft="40dp"
         android:text="Second Preferred Activity"
-        android:textColor="@color/black"
+        android:background="#99141414"
+        android:textColor="@color/white"
         android:textSize="15sp" />
 
     <Spinner
@@ -236,7 +244,8 @@
         android:layout_marginTop="500dp"
         android:layout_marginLeft="40dp"
         android:text="Third Preferred Activity"
-        android:textColor="@color/black"
+        android:background="#99141414"
+        android:textColor="@color/white"
         android:textSize="15sp" />
 
     <Spinner
@@ -258,7 +267,8 @@
         android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/txtmost"
         android:text="Disliked Activity"
-        android:textColor="@color/black"
+        android:background="#99141414"
+        android:textColor="@color/white"
         android:textSize="15sp" />
 
 
@@ -274,7 +284,11 @@
         android:hint="Type and Select"
         android:textSize="15sp"
         android:completionThreshold="1"
-        android:completionHint="Select an activity"/>
+        android:background="#99141414"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:completionHint="Select an activity"
+        />
 
     <LinearLayout
         android:id="@+id/LinearLayout02"

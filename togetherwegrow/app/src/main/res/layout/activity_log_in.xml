@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/family1"
     tools:context=".LogIn">
 
     <TextView
@@ -25,13 +26,16 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="300dp"
+        android:background="#99141414"
+        android:textColorHint="@color/white"
         android:hint="username">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/usernamelogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_username" />
+            android:drawableEnd="@drawable/ic_username"
+            android:textColor="@color/white"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -41,6 +45,8 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="400dp"
+        android:background="#99141414"
+        android:textColorHint="@color/white"
         android:hint="password">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -48,7 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:drawableEnd="@drawable/ic_password" />
+            android:drawableEnd="@drawable/ic_password"
+            android:textColor="@color/white"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -75,6 +82,8 @@
         android:layout_marginTop="143dp"
         android:layout_marginEnd="80dp"
         android:gravity="center"
+        android:background="#99141414"
+        android:textColor="@color/white"
         android:text="Create a new account?         Sign Up" />
 
 </RelativeLayout>

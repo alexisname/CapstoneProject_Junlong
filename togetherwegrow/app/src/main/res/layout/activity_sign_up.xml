@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/family"
     tools:context=".SignUp">
 
     <TextView
@@ -23,6 +24,8 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="250dp"
+        android:background="#99141414"
+        android:textColorHint="@color/white"
         android:hint="email">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -39,6 +42,8 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="350dp"
+        android:background="#99141414"
+        android:textColorHint="@color/white"
         android:hint="username">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -55,6 +60,8 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="450dp"
+        android:background="#99141414"
+        android:textColorHint="@color/white"
         android:hint="password">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -88,6 +95,8 @@
         android:layout_marginStart="78dp"
         android:layout_marginTop="600dp"
         android:layout_marginEnd="78dp"
+        android:background="#99141414"
+        android:textColor="@color/white"
         android:text="Already have an account? Login" />
 
 </RelativeLayout>
