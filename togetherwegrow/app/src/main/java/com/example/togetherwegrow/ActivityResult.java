@@ -46,6 +46,9 @@ public class ActivityResult extends AppCompatActivity {
     int hour3;
     int minute3;
     int alarmDay;
+    int rdm1;
+    int rdm2;
+    int rdm3;
     String username;
     String activityOne;
     String activityTwo;
@@ -58,7 +61,9 @@ public class ActivityResult extends AppCompatActivity {
     TextView activityColumnOne;
     TextView activityColumnTwo;
     TextView activityColumnThree;
+    TextView description;
     String[] retrievedActivity;
+    String[] activityDescription;
     Button btnBack;
     Button btnBtm;
     Button btnShuffleOne;
@@ -109,6 +114,7 @@ public class ActivityResult extends AppCompatActivity {
         btnCalOne = findViewById(R.id.btnCalOne);
         btnCalTwo = findViewById(R.id.btnCalTwo);
         btnCalThree = findViewById(R.id.btnCalThree);
+        description = findViewById(R.id.description);
         alarmDays = new ArrayList<>();
         Log.e("",email);
 
@@ -144,23 +150,24 @@ public class ActivityResult extends AppCompatActivity {
                 /*according to number of time selected by user, randomly assign result for display*/
                 if(hour2>=0 && hour3>=0){
                     int numOfRetrieved = retrievedActivity.length;
-                    int rdm1 = (int)((Math.random()*numOfRetrieved));
-                    int rdm2 = (int)((Math.random()*numOfRetrieved));
-                    int rdm3 = (int)((Math.random()*numOfRetrieved));
+                    rdm1 = (int)((Math.random()*numOfRetrieved));
+                    rdm2 = (int)((Math.random()*numOfRetrieved));
+                    rdm3 = (int)((Math.random()*numOfRetrieved));
                     String minuteOne = minute1<10?"0"+String.valueOf(minute1):String.valueOf(minute1);
                     String minuteTwo = minute2<10?"0"+String.valueOf(minute2):String.valueOf(minute2);
                     String minuteThree = minute3<10?"0"+String.valueOf(minute3):String.valueOf(minute3);
                     activityOne = retrievedActivity[rdm1];
                     activityTwo = retrievedActivity[rdm2];
                     activityThree = retrievedActivity[rdm3];
+                    Log.e("rdm1: ",Integer.toString(rdm1));
                     activityColumnOne.setText(activityOne+" At: "+String.valueOf(hour1)+" : "+minuteOne);
                     activityColumnTwo.setText(activityTwo+" At: "+String.valueOf(hour2)+" : "+minuteTwo);
                     activityColumnThree.setText(activityThree+" At: "+String.valueOf(hour3)+" : "+minuteThree);
                 }
                 else if(hour2>=0){
                     int numOfRetrieved = retrievedActivity.length;
-                    int rdm1 = (int)((Math.random()*numOfRetrieved));
-                    int rdm2 = (int)((Math.random()*numOfRetrieved));
+                    rdm1 = (int)((Math.random()*numOfRetrieved));
+                    rdm2 = (int)((Math.random()*numOfRetrieved));
                     String minuteOne = minute1<10?"0"+String.valueOf(minute1):String.valueOf(minute1);
                     String minuteTwo = minute2<10?"0"+String.valueOf(minute2):String.valueOf(minute2);
                     activityOne = retrievedActivity[rdm1];
@@ -171,7 +178,7 @@ public class ActivityResult extends AppCompatActivity {
                 }
                 else{
                     int numOfRetrieved = retrievedActivity.length;
-                    int rdm1 = (int)((Math.random()*numOfRetrieved));
+                    rdm1 = (int)((Math.random()*numOfRetrieved));
                     String minuteOne = minute1<10?"0"+String.valueOf(minute1):String.valueOf(minute1);
                     activityOne = retrievedActivity[rdm1];
                     activityColumnOne.setText(activityOne+" At: "+String.valueOf(hour1)+" : "+minuteOne);
@@ -187,9 +194,9 @@ public class ActivityResult extends AppCompatActivity {
             public void onClick(View v) {
                 if(hour1>=0){
                     int numOfRetrieved = retrievedActivity.length;
-                    int rdm = (int)((Math.random()*numOfRetrieved));
+                    rdm1 = (int)((Math.random()*numOfRetrieved));
                     String minuteOne = minute1<10?"0"+String.valueOf(minute1):String.valueOf(minute1);
-                    activityOne = retrievedActivity[rdm];
+                    activityOne = retrievedActivity[rdm1];
                     activityColumnOne.setText(activityOne+" At: "+String.valueOf(hour1)+" : "+minuteOne);
                 }
             }
@@ -199,9 +206,9 @@ public class ActivityResult extends AppCompatActivity {
             public void onClick(View v) {
                 if(hour2>=0){
                     int numOfRetrieved = retrievedActivity.length;
-                    int rdm = (int)((Math.random()*numOfRetrieved));
+                    rdm2 = (int)((Math.random()*numOfRetrieved));
                     String minuteTwo = minute2<10?"0"+String.valueOf(minute2):String.valueOf(minute2);
-                    activityTwo = retrievedActivity[rdm];
+                    activityTwo = retrievedActivity[rdm2];
                     activityColumnTwo.setText(activityTwo+" At: "+String.valueOf(hour2)+" : "+minuteTwo);
                 }
             }
@@ -211,9 +218,9 @@ public class ActivityResult extends AppCompatActivity {
             public void onClick(View v) {
                 if(hour3>=0){
                     int numOfRetrieved = retrievedActivity.length;
-                    int rdm = (int)((Math.random()*numOfRetrieved));
+                    rdm3 = (int)((Math.random()*numOfRetrieved));
                     String minuteThree = minute3<10?"0"+String.valueOf(minute3):String.valueOf(minute3);
-                    activityThree = retrievedActivity[rdm];
+                    activityThree = retrievedActivity[rdm3];
                     activityColumnThree.setText(activityThree+" At: "+String.valueOf(hour3)+" : "+minuteThree);
                 }
             }
@@ -332,6 +339,43 @@ public class ActivityResult extends AppCompatActivity {
             }
         });
 
+        activityColumnOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(activityOne!=null){
+                    Log.e("rdm1 description: ",Integer.toString(rdm1));
+                    Log.e("description: ",activityDescription[rdm1]);
+                    String des = activityDescription[rdm1];
+                    description.setText(des);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "No Activity So Far",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        activityColumnTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(activityTwo!=null){
+                    description.setText(activityDescription[rdm2]);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "No Activity So Far",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        activityColumnThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(activityThree!=null){
+                    description.setText(activityDescription[rdm3]);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "No Activity So Far",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
 
         /*set onclick listener for back button*/
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -398,15 +442,18 @@ public class ActivityResult extends AppCompatActivity {
         try {
             JSONArray jsonArray = new JSONArray(response);
             retrievedActivity = new String[jsonArray.length()];
+            activityDescription = new String[jsonArray.length()];
             for(int i=0; i<jsonArray.length(); i++){//for each item in that jsonArray, get desired data
                 String activityVar;
 //                double energyVar;
 //                double freshVar;
 //                int ageVar;
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                Log.e("activity: ",jsonObject.getString("activity"));
+                //Log.e("activity: ",jsonObject.getString("activity"));
                 activityVar = jsonObject.getString("activity");
                 retrievedActivity[i]=activityVar;
+                activityDescription[i] = jsonObject.getString("Description");
+                //Log.e("description: ",activityDescription[i]);
             }
         } catch (JSONException e) {
             e.printStackTrace();
