@@ -8,6 +8,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
+import android.os.SystemClock;
 import android.provider.AlarmClock;
 import android.provider.CalendarContract;
 import android.util.Log;
@@ -125,6 +126,7 @@ public class ActivityResult extends AppCompatActivity {
         clickForRes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println("before click retrieve: "+SystemClock.currentThreadTimeMillis());
                 if(selectDay.equals("Monday")){
                     alarmDay = Calendar.MONDAY;
                 }
@@ -163,6 +165,7 @@ public class ActivityResult extends AppCompatActivity {
                     activityColumnOne.setText(activityOne+" At: "+String.valueOf(hour1)+" : "+minuteOne);
                     activityColumnTwo.setText(activityTwo+" At: "+String.valueOf(hour2)+" : "+minuteTwo);
                     activityColumnThree.setText(activityThree+" At: "+String.valueOf(hour3)+" : "+minuteThree);
+                    System.out.println("after retrieve: "+SystemClock.currentThreadTimeMillis());
                 }
                 else if(hour2>=0){
                     int numOfRetrieved = retrievedActivity.length;
@@ -406,6 +409,7 @@ public class ActivityResult extends AppCompatActivity {
                 finish();
             }
         });
+        System.out.println("result on create: "+SystemClock.currentThreadTimeMillis());
 
     }
 

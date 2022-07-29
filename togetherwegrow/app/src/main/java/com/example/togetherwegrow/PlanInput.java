@@ -10,6 +10,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
@@ -303,6 +304,7 @@ public class PlanInput extends AppCompatActivity{
         iptSMT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println("on click submit: "+ SystemClock.currentThreadTimeMillis());
                 //if all fields are filled, calculate
                 if(timeBtn1.getText().equals("Select Time")&& timeBtn2.getText().equals("Select Time")&& timeBtn3.getText().equals("Select Time")){
                     Toast.makeText(getApplicationContext(), "Choose at least one time slot", Toast.LENGTH_SHORT).show();
