@@ -70,8 +70,9 @@ class DataBase
             $i = 0;
             while($row = mysqli_fetch_assoc($result)){
                 $ansactivit[$i]['activity'] = $row['activity'];
-                $ansactivit[$i]['energy'] = $row['energyReq'];
-                $ansactivit[$i]['fresh'] = $row['freshReq'];                
+                // $ansactivit[$i]['energy'] = $row['energyReq'];
+                // $ansactivit[$i]['fresh'] = $row['freshReq'];
+                $ansactivit[$i]['Description'] = $row['Description'];                
                 $i++;
             }
             echo json_encode($ansactivit);
@@ -87,9 +88,16 @@ class DataBase
         $password = password_hash($password, PASSWORD_DEFAULT);
         $this->sql =
             "INSERT INTO " . $table . " (email, username, password) VALUES ('" . $email . "','" . $username . "','" . $password . "')";
-        if (mysqli_query($this->connect, $this->sql)) {
-            return true;
-        } else return false;
+        // if (mysqli_query($this->connect, $this->sql)) {
+        //     $signup = true;
+        // } else $signup = false;
+        try{
+            mysqli_query($this->connect, $this->sql);
+        }
+        catch(Exception $e){
+            return false;
+        }
+        return true;
     }
 
     function input($table, $username, $worktype, $workload, $freshnessafterwork, $activityhour1, $activityhour2, $activityhour3, $childage, $mostpreferred, $secondpreferred, $thirdpreferred, $dislike)

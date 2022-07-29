@@ -10,9 +10,9 @@ class DataBaseConfig
     public function __construct()
     {
 
-        $this->servername = 'localhost';
-        $this->username = 'root';
-        $this->password = '';
+        $this->servername = 'togetherwegrow.cfq3tnuayhgb.ca-central-1.rds.amazonaws.com';
+        $this->username = 'userjc';
+        $this->password = 'capstone';
         $this->databasename = 'togetherwegrow';
 
     }

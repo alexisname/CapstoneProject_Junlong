@@ -73,10 +73,10 @@ public class SignUp extends AppCompatActivity {
                             /*use SendData helper for url connection and IO stream
                              * check the returned result on completion of data sending
                              */
-                            SendData putData = new SendData("http://35.183.174.53/TogetherWeGrow/signup.php","POST",field,data);
-                            if(putData.startSend()){
-                                if(putData.onComplete()){
-                                    String result = putData.getResult();
+                            SendData sendData = new SendData("http://35.183.174.53/TogetherWeGrow/signup.php","POST",field,data);
+                            if(sendData.startSend()){
+                                if(sendData.onComplete()){
+                                    String result = sendData.getResult();
                                     if(result.equals("Sign Up Success")){ //if sign up succeed, redirect to sign in page
                                         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(getApplicationContext(),LogIn.class);

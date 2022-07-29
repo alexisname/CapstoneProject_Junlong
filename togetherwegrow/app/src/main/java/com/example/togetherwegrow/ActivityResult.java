@@ -150,44 +150,51 @@ public class ActivityResult extends AppCompatActivity {
                 }
 
                 /*according to number of time selected by user, randomly assign result for display*/
-                if(hour2>=0 && hour3>=0){
-                    int numOfRetrieved = retrievedActivity.length;
-                    rdm1 = (int)((Math.random()*numOfRetrieved));
-                    rdm2 = (int)((Math.random()*numOfRetrieved));
-                    rdm3 = (int)((Math.random()*numOfRetrieved));
-                    String minuteOne = minute1<10?"0"+String.valueOf(minute1):String.valueOf(minute1);
-                    String minuteTwo = minute2<10?"0"+String.valueOf(minute2):String.valueOf(minute2);
-                    String minuteThree = minute3<10?"0"+String.valueOf(minute3):String.valueOf(minute3);
-                    activityOne = retrievedActivity[rdm1];
-                    activityTwo = retrievedActivity[rdm2];
-                    activityThree = retrievedActivity[rdm3];
-                    Log.e("rdm1: ",Integer.toString(rdm1));
-                    activityColumnOne.setText(activityOne+" At: "+String.valueOf(hour1)+" : "+minuteOne);
-                    activityColumnTwo.setText(activityTwo+" At: "+String.valueOf(hour2)+" : "+minuteTwo);
-                    activityColumnThree.setText(activityThree+" At: "+String.valueOf(hour3)+" : "+minuteThree);
-                    System.out.println("after retrieve: "+SystemClock.currentThreadTimeMillis());
+                if(retrievedActivity.length==0){ //if no matched result, display not found to user
+                    activityColumnOne.setText("No Activity Found Based on Your Input");
+                    activityColumnTwo.setText("No Activity Found Based on Your Input");
+                    activityColumnThree.setText("No Activity Found Based on Your Input");
+                }else{
+                    if(hour2>=0 && hour3>=0){
+                        int numOfRetrieved = retrievedActivity.length;
+                        rdm1 = (int)((Math.random()*numOfRetrieved));
+                        rdm2 = (int)((Math.random()*numOfRetrieved));
+                        rdm3 = (int)((Math.random()*numOfRetrieved));
+                        String minuteOne = minute1<10?"0"+String.valueOf(minute1):String.valueOf(minute1);
+                        String minuteTwo = minute2<10?"0"+String.valueOf(minute2):String.valueOf(minute2);
+                        String minuteThree = minute3<10?"0"+String.valueOf(minute3):String.valueOf(minute3);
+                        activityOne = retrievedActivity[rdm1];
+                        activityTwo = retrievedActivity[rdm2];
+                        activityThree = retrievedActivity[rdm3];
+                        Log.e("rdm1: ",Integer.toString(rdm1));
+                        activityColumnOne.setText(activityOne+" At: "+String.valueOf(hour1)+" : "+minuteOne);
+                        activityColumnTwo.setText(activityTwo+" At: "+String.valueOf(hour2)+" : "+minuteTwo);
+                        activityColumnThree.setText(activityThree+" At: "+String.valueOf(hour3)+" : "+minuteThree);
+                        System.out.println("after retrieve: "+SystemClock.currentThreadTimeMillis());
+                    }
+                    else if(hour2>=0){
+                        int numOfRetrieved = retrievedActivity.length;
+                        rdm1 = (int)((Math.random()*numOfRetrieved));
+                        rdm2 = (int)((Math.random()*numOfRetrieved));
+                        String minuteOne = minute1<10?"0"+String.valueOf(minute1):String.valueOf(minute1);
+                        String minuteTwo = minute2<10?"0"+String.valueOf(minute2):String.valueOf(minute2);
+                        activityOne = retrievedActivity[rdm1];
+                        activityTwo = retrievedActivity[rdm2];
+                        activityColumnOne.setText(activityOne+" At: "+String.valueOf(hour1)+" : "+minuteOne);
+                        activityColumnTwo.setText(activityTwo+" At: "+String.valueOf(hour2)+" : "+minuteTwo);
+                        activityColumnThree.setText("Time has not been selected");
+                    }
+                    else{
+                        int numOfRetrieved = retrievedActivity.length;
+                        rdm1 = (int)((Math.random()*numOfRetrieved));
+                        String minuteOne = minute1<10?"0"+String.valueOf(minute1):String.valueOf(minute1);
+                        activityOne = retrievedActivity[rdm1];
+                        activityColumnOne.setText(activityOne+" At: "+String.valueOf(hour1)+" : "+minuteOne);
+                        activityColumnTwo.setText("Time has not been selected");
+                        activityColumnThree.setText("Time has not been selected");
+                    }
                 }
-                else if(hour2>=0){
-                    int numOfRetrieved = retrievedActivity.length;
-                    rdm1 = (int)((Math.random()*numOfRetrieved));
-                    rdm2 = (int)((Math.random()*numOfRetrieved));
-                    String minuteOne = minute1<10?"0"+String.valueOf(minute1):String.valueOf(minute1);
-                    String minuteTwo = minute2<10?"0"+String.valueOf(minute2):String.valueOf(minute2);
-                    activityOne = retrievedActivity[rdm1];
-                    activityTwo = retrievedActivity[rdm2];
-                    activityColumnOne.setText(activityOne+" At: "+String.valueOf(hour1)+" : "+minuteOne);
-                    activityColumnTwo.setText(activityTwo+" At: "+String.valueOf(hour2)+" : "+minuteTwo);
-                    activityColumnThree.setText("Time has not been selected");
-                }
-                else{
-                    int numOfRetrieved = retrievedActivity.length;
-                    rdm1 = (int)((Math.random()*numOfRetrieved));
-                    String minuteOne = minute1<10?"0"+String.valueOf(minute1):String.valueOf(minute1);
-                    activityOne = retrievedActivity[rdm1];
-                    activityColumnOne.setText(activityOne+" At: "+String.valueOf(hour1)+" : "+minuteOne);
-                    activityColumnTwo.setText("Time has not been selected");
-                    activityColumnThree.setText("Time has not been selected");
-                }
+
             }
         });
 
@@ -197,10 +204,12 @@ public class ActivityResult extends AppCompatActivity {
             public void onClick(View v) {
                 if(hour1>=0){
                     int numOfRetrieved = retrievedActivity.length;
-                    rdm1 = (int)((Math.random()*numOfRetrieved));
-                    String minuteOne = minute1<10?"0"+String.valueOf(minute1):String.valueOf(minute1);
-                    activityOne = retrievedActivity[rdm1];
-                    activityColumnOne.setText(activityOne+" At: "+String.valueOf(hour1)+" : "+minuteOne);
+                    if(numOfRetrieved>0){
+                        rdm1 = (int)((Math.random()*numOfRetrieved));
+                        String minuteOne = minute1<10?"0"+String.valueOf(minute1):String.valueOf(minute1);
+                        activityOne = retrievedActivity[rdm1];
+                        activityColumnOne.setText(activityOne+" At: "+String.valueOf(hour1)+" : "+minuteOne);
+                    }
                 }
             }
         });
@@ -209,10 +218,12 @@ public class ActivityResult extends AppCompatActivity {
             public void onClick(View v) {
                 if(hour2>=0){
                     int numOfRetrieved = retrievedActivity.length;
-                    rdm2 = (int)((Math.random()*numOfRetrieved));
-                    String minuteTwo = minute2<10?"0"+String.valueOf(minute2):String.valueOf(minute2);
-                    activityTwo = retrievedActivity[rdm2];
-                    activityColumnTwo.setText(activityTwo+" At: "+String.valueOf(hour2)+" : "+minuteTwo);
+                    if(numOfRetrieved>0){
+                        rdm2 = (int)((Math.random()*numOfRetrieved));
+                        String minuteTwo = minute2<10?"0"+String.valueOf(minute2):String.valueOf(minute2);
+                        activityTwo = retrievedActivity[rdm2];
+                        activityColumnTwo.setText(activityTwo+" At: "+String.valueOf(hour2)+" : "+minuteTwo);
+                    }
                 }
             }
         });
@@ -221,10 +232,12 @@ public class ActivityResult extends AppCompatActivity {
             public void onClick(View v) {
                 if(hour3>=0){
                     int numOfRetrieved = retrievedActivity.length;
-                    rdm3 = (int)((Math.random()*numOfRetrieved));
-                    String minuteThree = minute3<10?"0"+String.valueOf(minute3):String.valueOf(minute3);
-                    activityThree = retrievedActivity[rdm3];
-                    activityColumnThree.setText(activityThree+" At: "+String.valueOf(hour3)+" : "+minuteThree);
+                    if(numOfRetrieved>0){
+                        rdm3 = (int)((Math.random()*numOfRetrieved));
+                        String minuteThree = minute3<10?"0"+String.valueOf(minute3):String.valueOf(minute3);
+                        activityThree = retrievedActivity[rdm3];
+                        activityColumnThree.setText(activityThree+" At: "+String.valueOf(hour3)+" : "+minuteThree);
+                    }
                 }
             }
         });
@@ -233,7 +246,7 @@ public class ActivityResult extends AppCompatActivity {
         btnSetOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!activityOne.equals("")){
+                if(hour1>0 && retrievedActivity.length>0){
                     Intent intentAlarmOne = new Intent(AlarmClock.ACTION_SET_ALARM);
                     intentAlarmOne.putExtra(AlarmClock.EXTRA_HOUR, hour1);
                     intentAlarmOne.putExtra(AlarmClock.EXTRA_MINUTES, minute1);
@@ -250,8 +263,7 @@ public class ActivityResult extends AppCompatActivity {
         btnSetTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!activityTwo.equals("")){
-
+                if(hour2>0 && retrievedActivity.length>0){
                     Intent intentAlarmTwo = new Intent(AlarmClock.ACTION_SET_ALARM);
                     intentAlarmTwo.putExtra(AlarmClock.EXTRA_HOUR, hour2);
                     intentAlarmTwo.putExtra(AlarmClock.EXTRA_MINUTES, minute2);
@@ -268,7 +280,7 @@ public class ActivityResult extends AppCompatActivity {
         btnSetThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!activityThree.equals("")){
+                if(hour3>0 && retrievedActivity.length>0){
                     Intent intentAlarmThree = new Intent(AlarmClock.ACTION_SET_ALARM);
                     intentAlarmThree.putExtra(AlarmClock.EXTRA_HOUR, hour3);
                     intentAlarmThree.putExtra(AlarmClock.EXTRA_MINUTES, minute3);
@@ -287,7 +299,7 @@ public class ActivityResult extends AppCompatActivity {
         btnCalOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!activityOne.equals("")){
+                if(hour1>0 && retrievedActivity.length>0){
                     Intent intentCalOne = new Intent(Intent.ACTION_INSERT);
                     intentCalOne.setData(CalendarContract.Events.CONTENT_URI);
                     intentCalOne.putExtra(CalendarContract.Events.TITLE, activityOne);
@@ -306,7 +318,7 @@ public class ActivityResult extends AppCompatActivity {
         btnCalTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!activityTwo.equals("")){
+                if(hour2>0 && retrievedActivity.length>0){
                     Intent intentCalOne = new Intent(Intent.ACTION_INSERT);
                     intentCalOne.setData(CalendarContract.Events.CONTENT_URI);
                     intentCalOne.putExtra(CalendarContract.Events.TITLE, activityTwo);
@@ -325,7 +337,7 @@ public class ActivityResult extends AppCompatActivity {
         btnCalThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!activityThree.equals("")){
+                if(hour3>0 && retrievedActivity.length>0){
                     Intent intentCalOne = new Intent(Intent.ACTION_INSERT);
                     intentCalOne.setData(CalendarContract.Events.CONTENT_URI);
                     intentCalOne.putExtra(CalendarContract.Events.TITLE, activityThree);
@@ -345,7 +357,7 @@ public class ActivityResult extends AppCompatActivity {
         activityColumnOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(activityOne!=null){
+                if(hour1>0 && retrievedActivity.length>0){
                     Log.e("rdm1 description: ",Integer.toString(rdm1));
                     Log.e("description: ",activityDescription[rdm1]);
                     String des = activityDescription[rdm1];
@@ -359,7 +371,7 @@ public class ActivityResult extends AppCompatActivity {
         activityColumnTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(activityTwo!=null){
+                if(hour2>0 && retrievedActivity.length>0){
                     description.setText(activityDescription[rdm2]);
                 }
                 else {
@@ -370,7 +382,7 @@ public class ActivityResult extends AppCompatActivity {
         activityColumnThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(activityThree!=null){
+                if(hour3>0 && retrievedActivity.length>0){
                     description.setText(activityDescription[rdm3]);
                 }
                 else {
