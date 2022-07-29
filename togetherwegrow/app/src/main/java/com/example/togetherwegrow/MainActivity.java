@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         /*define button for three main features*/
         Button inputBtn = findViewById(R.id.btnplan);
-        Button trackBtn = findViewById(R.id.btntrackplan);
+        //Button trackBtn = findViewById(R.id.btntrackplan);
         Button recBtn = findViewById(R.id.btnrec);
         /*onclick listener for input button*/
         inputBtn.setOnClickListener(new View.OnClickListener() {
@@ -36,15 +36,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
         /*onclick listener for track plan button*/
-        trackBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentToTrack = new Intent(getApplicationContext(),StatusTrack.class);
-                intentToTrack.putExtra("username",currUser); //pass current username to track page
-                startActivity(intentToTrack);
-                finish();
-            }
-        });
+//        trackBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intentToTrack = new Intent(getApplicationContext(),StatusTrack.class);
+//                intentToTrack.putExtra("username",currUser); //pass current username to track page
+//                startActivity(intentToTrack);
+//                finish();
+//            }
+//        });
 
         /*onclick listener for recommendation button*/
         recBtn.setOnClickListener(new View.OnClickListener() {

@@ -60,7 +60,7 @@ public class ActivityResult extends AppCompatActivity {
     TextView activityColumnThree;
     String[] retrievedActivity;
     Button btnBack;
-    Button btnConfirm;
+    Button btnBtm;
     Button btnShuffleOne;
     Button btnShuffleTwo;
     Button btnShuffleThree;
@@ -96,7 +96,7 @@ public class ActivityResult extends AppCompatActivity {
         //listResult = (ListView) findViewById(R.id.listResult);
         clickForRes = findViewById(R.id.clickRes);
         btnBack = findViewById(R.id.btnBack);
-        btnConfirm = findViewById(R.id.btnConfirm);
+        btnBtm = findViewById(R.id.btnBtm);
         activityColumnOne = findViewById(R.id.activityOne);
         activityColumnTwo = findViewById(R.id.activityTwo);
         activityColumnThree = findViewById(R.id.activityThree);
@@ -343,21 +343,22 @@ public class ActivityResult extends AppCompatActivity {
                 finish();
             }
         });
-
-        btnConfirm.setOnClickListener(new View.OnClickListener() {
+        /*set onclick listener for back to main button*/
+        btnBtm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentConfirm = new Intent(getApplicationContext(),StatusTrack.class);
-                if(activityOne!=null){
-                    intentConfirm.putExtra("activityOne",activityOne);
-                }
-                if(activityTwo!=null){
-                    intentConfirm.putExtra("activityTwo",activityTwo);
-                }
-                if(activityThree!=null){
-                    intentConfirm.putExtra("activityThree",activityThree);
-                }
-                startActivity(intentConfirm);
+                Intent intentBtm = new Intent(getApplicationContext(),MainActivity.class);
+//                if(activityOne!=null){
+//                    intentConfirm.putExtra("activityOne",activityOne);
+//                }
+//                if(activityTwo!=null){
+//                    intentConfirm.putExtra("activityTwo",activityTwo);
+//                }
+//                if(activityThree!=null){
+//                    intentConfirm.putExtra("activityThree",activityThree);
+//                }
+                intentBtm.putExtra("username",username);
+                startActivity(intentBtm);
                 finish();
             }
         });

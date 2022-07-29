@@ -15,6 +15,7 @@
         android:gravity="center"
         android:layout_marginTop="100dp"
         android:textSize="30sp"
+        android:background="@color/transDark"
         android:textColor="@color/teal_700"/>
 
     <com.google.android.material.textfield.TextInputLayout

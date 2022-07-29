@@ -16,6 +16,7 @@
         android:layout_marginTop="40dp"
         android:textSize="30dp"
         android:textColor="@color/teal_700"
+        android:background="@color/transDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,6 +117,7 @@
         android:layout_marginRight="30dp"
         android:layout_below="@+id/txtthird"
         android:layout_marginTop="50dp"
+        app:boxBackgroundColor="@color/transDark"
         android:hint="Enter Email for Calendar Booking">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emaileditCal"
@@ -142,7 +144,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="220dp"
         android:text="Select Time"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:backgroundTint="@color/transDark"/>
 
     <Button
         android:id="@+id/time2"
@@ -152,7 +155,8 @@
         android:layout_toEndOf="@+id/time1"
         android:layout_marginLeft="25dp"
         android:text="Select Time"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:backgroundTint="@color/transDark"/>
     <Button
         android:id="@+id/time3"
         android:layout_width="105dp"
@@ -161,7 +165,8 @@
         android:layout_marginLeft="25dp"
         android:layout_toEndOf="@+id/time2"
         android:text="Select Time"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:backgroundTint="@color/transDark"/>
 
     <Button
         android:id="@+id/timeRst"
@@ -171,7 +176,8 @@
         android:layout_marginLeft="25dp"
         android:layout_toEndOf="@+id/time2"
         android:text="Reset Time"
-        android:textSize="8sp" />
+        android:textSize="8sp"
+        android:backgroundTint="@color/transDark"/>
 
 
     <TextView
@@ -300,14 +306,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Back to Homepage">
+            android:text="Back to Homepage"
+            android:backgroundTint="@color/transDark">
         </Button>
         <Button
             android:id="@+id/inputSMT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Submit">
+            android:text="Submit"
+            android:backgroundTint="@color/transDark">
         </Button>
     </LinearLayout>
 
